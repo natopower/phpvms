@@ -1,0 +1,75 @@
+/**
+ * You can customize the DARK MODE here.
+ * Only add what you need to change, rest will be loaded from main stylesheet,
+ * main logic here is to overwrite previous settings with a data-theme setting.
+ *
+ * To add a definition, you can just copy it from main stylesheet and add
+ * [data-theme="dark"] before the first class or the id. Then edit the color/style etc.
+ *
+ */
+
+[data-theme="dark"] {
+  background-color: rgb(28, 28, 28) !important;
+  color: AntiqueWhite !important;
+}
+
+[data-theme="dark"] .bg-sidebar {
+  background-color: #8C0AC8;
+  box-shadow: 2px 0px 4px darkslategray;
+}
+
+[data-theme="dark"] .bg-navbar {
+  background-color: #8C0AC8;
+  box-shadow: 0px 2px 4px darkslategray;
+}
+
+[data-theme="dark"] .bg-dropdown {
+  background-color: #8C0AC8;
+  box-shadow: 0px 2px 4px black;
+  border: none;
+}
+
+[data-theme="dark"] .card {
+  box-shadow: 2px 2px 4px #1322a73f;
+  background-color: rgba(37, 36, 36, 0.7);
+  border-color: #8C0AC8;
+  border-radius: 5px;
+}
+
+[data-theme="dark"] .card-header {
+  background-color: #8C0AC8;
+  color: white;
+}
+
+[data-theme="dark"] .card-body .table {
+  background-color: #8C0AC8;
+  color: AntiqueWhite !important;
+}
+
+[data-theme="dark"] .media-body .table {
+  background-color: transparent;
+  color: AntiqueWhite !important;
+}
+
+[data-theme="dark"] .card .card-footer { color: lightsalmon !important; }
+[data-theme="dark"] .card .overflow-auto { background-color: lightslategray !important; }
+[data-theme="dark"] #map { filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);}
+[data-theme="dark"] #live_flights_table { color: AntiqueWhite !important; }
+
+[data-theme="dark"] .btn { color: black; font-weight:500;}
+[data-theme="dark"] .select2-search input { color: black !important; }
+[data-theme="dark"] .select2-results { color: black !important; }
+
+[data-theme="dark"] a { text-decoration: none; color: lightblue; font-weight:500;}
+[data-theme="dark"] .card-body a { text-decoration: none; color: #fff; font-weight:500;}
+[data-theme="dark"] .card-body a:hover { text-decoration: none; color: LightGoldenRodYellow; font-weight:500;}
+[data-theme="dark"] .card-body a:active { text-decoration: none; color: white; font-weight:500;}
+
+[data-theme="dark"] #nav-tab .active { background-color: transparent; color: LightGoldenRodYellow;}
+
+[data-theme="dark"] .jumbotron { background-color: transparent; color: LightGoldenRodYellow; }
+
+[data-theme="dark"] .bg-light { background-color: #333 !important; }
+[data-theme="dark"] .bg-white { background-color: #000 !important; }
+[data-theme="dark"] .bg-black { background-color: #eee !important; }
+[data-theme="dark"] .text-dark { color: AntiqueWhite !important; }

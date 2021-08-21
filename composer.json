@@ -72,7 +72,7 @@
         "akaunting/laravel-money": "^1.2"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.5",
+        "barryvdh/laravel-debugbar": "^3.6",
         "barryvdh/laravel-ide-helper": "^2.9",
         "bpocallaghan/generators": "~7.0",
         "filp/whoops": "~2.0",
