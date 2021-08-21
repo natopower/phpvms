@@ -58,7 +58,7 @@ https://api.checkwx.com/#metar-decoded
 		</tr>
     <tr>
       <td>@lang('widgets.weather.barometer')</td>
-      <td>{{ number_format($metar['barometer']['hPa']) }} hPa / {{ number_format($metar['barometer']['inHg'], 2) }} inHg</td>
+      <td>{{ number_format($metar['barometer']['inHg'], 2) }} inHg</td>
     </tr>
     @if($metar['recent_weather_report'])
 		 <tr>
@@ -91,8 +91,5 @@ https://api.checkwx.com/#metar-decoded
       <td>@lang('common.metar')</td>
       <td>@if($metar) {{ $metar['raw'] }} @else @lang('widgets.weather.nometar') @endif</td>
     </tr>
-    <tr>
-      <td>TAF</td>
-      <td>@if($taf) {{ $taf['raw'] }} @else @lang('widgets.weather.nometar') @endif</td>
-    </tr>
+
 </table>

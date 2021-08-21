@@ -21,8 +21,8 @@
 }
 
 .dashboard-box {
-    background: #067ec1;
-    color: #FFF;
+    background: #8C0AC8;
+    color: #fff !important;
 }
 
 .dashboard-box .header {
@@ -41,6 +41,14 @@
     left: 0;
     right: 0;
     font-size: 125px;
+}
+
+.navbar {
+    background-color: #adff98 !important;
+}
+
+.nav-link {
+    color: #272727 !important;
 }
 
 .dashboard-box .icon {
@@ -83,11 +91,11 @@
 }
 
 .blue-bg {
-    background: #067ec1;
+    background: #8C0AC8;
 }
 
 .border-blue-bottom {
-    border-bottom: 3px solid #067ec1;
+    border-bottom: 3px solid #8C0AC8;
 }
 
 .full-height {

@@ -17,19 +17,19 @@
 
       {{-- TOP BAR WITH BOXES --}}
       <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="card card-primary text-white dashboard-box">
             <div class="card-body text-center">
               <div class="icon-background">
                 <i class="fas fa-plane icon"></i>
               </div>
-              <h3 class="header">{{ $user->flights }}</h3>
+              <h3 class="header"></h3>
               <h5 class="description">{{ trans_choice('common.flight', $user->flights) }}</h5>
             </div>
           </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="card card-primary text-white dashboard-box">
             <div class="card-body text-center">
               <div class="icon-background">
@@ -40,23 +40,12 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-3">
-          <div class="card card-primary text-white dashboard-box">
-            <div class="card-body text-center">
-              <div class="icon-background"> {{--110px font-size--}}
-                <i class="fas fa-money-bill-alt icon"></i>
-              </div>
-              <h3 class="header">{{ optional($user->journal)->balance ?? 0 }}</h3>
-              <h5 class="description">@lang('dashboard.yourbalance')</h5>
-            </div>
-          </div>
-        </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="card card-primary text-white dashboard-box">
             <div class="card-body text-center">
               <div class="icon-background">
-                <i class="fas fa-map-marker icon"></i>
+                <i class="fas fa-map-marker-alt icon"></i>
               </div>
               <h3 class="header">{{ $current_airport }}</h3>
               <h5 class="description">@lang('airports.current')</h5>
@@ -66,7 +55,7 @@
 
       </div>
 
-      <div class="nav nav-tabs" role="tablist" style="background: #067ec1; color: #FFF;">
+      <div class="nav nav-tabs" role="tablist" style="background: #8C0AC8; color: #FFF;">
         @lang('dashboard.yourlastreport')
       </div>
       <div class="card border-blue-bottom">
@@ -87,7 +76,7 @@
     {{-- Sidebar --}}
     <div class="col-sm-4">
       <div class="card">
-        <div class="nav nav-tabs" role="tablist" style="background: #067ec1; color: #FFF;">
+        <div class="nav nav-tabs" role="tablist" style="background: #8C0AC8; color: #FFF;">
           @lang('dashboard.weatherat', ['ICAO' => $current_airport])
         </div>
         <div class="card-body">
@@ -99,7 +88,7 @@
       </div>
 
       <div class="card">
-        <div class="nav nav-tabs" role="tablist" style="background: #067ec1; color: #FFF;">
+        <div class="nav nav-tabs" role="tablist" style="background: #8C0AC8; color: #FFF;">
           @lang('dashboard.recentreports')
         </div>
         <div class="card-body">
@@ -111,7 +100,7 @@
       </div>
 
       <div class="card">
-        <div class="nav nav-tabs" role="tablist" style="background: #067ec1; color: #FFF;">
+        <div class="nav nav-tabs" role="tablist" style="background: #8C0AC8; color: #FFF;">
           @lang('common.newestpilots')
         </div>
         <div class="card-body">

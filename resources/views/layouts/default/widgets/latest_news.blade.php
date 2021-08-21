@@ -1,4 +1,4 @@
-<div class="nav nav-tabs" role="tablist" style="background: #067ec1; color: #FFF;">
+<div class="nav nav-tabs" role="tablist" style="background: #8C0AC8; color: #FFF;">
   @lang('widgets.latestnews.news')
 </div>
 <div class="card border-blue-bottom">

@@ -2,7 +2,7 @@
   <div class="nav-tabs-wrapper">
     <ul class="navbar-nav align-middle">
       @if(Auth::check())
-        <li class="nav-item">
+        <li class="nav-item pt-2">
           <a class="nav-link" href="{{ route('frontend.dashboard.index') }}">
             <i class="fas fa-tachometer-alt"></i>
             <p>@lang('common.dashboard')</p>
@@ -10,14 +10,14 @@
         </li>
       @endif
 
-      <li class="nav-item">
+      <li class="nav-item pt-2">
         <a class="nav-link" href="{{ route('frontend.livemap.index') }}">
           <i class="fas fa-globe"></i>
           <p>@lang('common.livemap')</p>
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item pt-2">
         <a class="nav-link" href="{{ route('frontend.pilots.index') }}">
           <i class="fas fa-users"></i>
           <p>{{ trans_choice('common.pilot', 2) }}</p>
@@ -26,7 +26,7 @@
 
       {{-- Show the module links that don't require being logged in --}}
       @foreach($moduleSvc->getFrontendLinks($logged_in=false) as &$link)
-        <li class="nav-item">
+        <li class="nav-item pt-2">
           <a class="nav-link" href="{{ url($link['url']) }}">
             <i class="{{ $link['icon'] }}"></i>
             <p>{{ ($link['title']) }}</p>
@@ -35,7 +35,7 @@
       @endforeach
 
       @foreach($page_links as $page)
-        <li class="nav-item">
+        <li class="nav-item pt-2">
           <a class="nav-link" href="{{ $page->url }}" target="{{ $page->new_window ? '_blank':'_self' }}">
             <i class="{{ $page['icon'] }}"></i>
             <p>{{ $page['name'] }}</p>
@@ -44,32 +44,32 @@
       @endforeach
 
       @if(!Auth::check())
-         <li class="nav-item">
+         <li class="nav-item pt-2">
           <a class="nav-link" href="{{ url('/register') }}">
             <i class="far fa-id-card"></i>
             <p>@lang('common.register')</p>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item pt-2">
           <a class="nav-link" href="{{ url('/login') }}">
             <i class="fas fa-sign-in-alt"></i>
             <p>@lang('common.login')</p>
           </a>
         </li>
       @else
-        <li class="nav-item">
+        <li class="nav-item pt-2">
           <a class="nav-link" href="{{ route('frontend.flights.index') }}">
             <i class="fab fa-avianex"></i>
             <p>{{ trans_choice('common.flight', 2) }}</p>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item pt-2">
           <a class="nav-link" href="{{ route('frontend.pireps.index') }}">
             <i class="fas fa-cloud-upload-alt"></i>
             <p>{{ trans_choice('common.pirep', 2) }}</p>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item pt-2">
           <a class="nav-link" href="{{ route('frontend.downloads.index') }}">
             <i class="fas fa-download"></i>
             <p>{{ trans_choice('common.download', 2) }}</p>
@@ -78,7 +78,7 @@
 
         {{-- Show the module links for being logged in --}}
         @foreach($moduleSvc->getFrontendLinks($logged_in=true) as &$link)
-          <li class="nav-item">
+          <li class="nav-item pt-2">
             <a class="nav-link" href="{{ url($link['url']) }}">
               <i class="{{ $link['icon'] }}"></i>
               <p>{{ ($link['title']) }}</p>
@@ -86,7 +86,7 @@
           </li>
         @endforeach
 
-        <li class="nav-item dropdown ">
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
              data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
             @if (Auth::user()->avatar == null)
