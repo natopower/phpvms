@@ -1,6 +1,0 @@
-# Ignore everything so if we update via git, nothing is overwritten
-
-/*
-/*/
-!.gitignore
-!/default
