@@ -6,7 +6,7 @@
       <div class="alert alert-danger" role="alert">
         The cron has not run in more than 12 hours; make sure it's setup and check logs at
         <span class="text-monospace bg-gradient-dark">storage/logs/cron.log</span>.
-        <a href="{{ docs_link('cron') }}" target="_blank">See the docs</a>
+        <a style="color: white" href="{{ docs_link('cron') }}" target="_blank">See the docs</a>
       </div>
     @endif
 

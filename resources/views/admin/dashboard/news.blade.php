@@ -21,7 +21,7 @@
       ]) }}
           {{ Form::hidden('news_id', $item->id) }}
           {{
-               Form::button('<i class="far fa-trash-alt"></i>&nbsp;delete',
+               Form::button('delete',
                                ['type' => 'submit',
                                 'class' => ' btn btn-danger btn-xs text-small',
                                 'onclick' => "return confirm('Are you sure?')"
@@ -52,9 +52,9 @@
           <td>{{ Form::textarea('body', '', ['class' => 'form-control']) }}</td>
         </tr>
       </table>
-      <div class="text-right">
+      <div class="text-center">
         {{
-         Form::button('<i class="fas fa-plus-circle"></i>&nbsp;add',
+         Form::button('post',
                          ['type' => 'submit',
                           'class' => 'btn btn-success btn-s'])
 

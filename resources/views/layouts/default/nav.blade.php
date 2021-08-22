@@ -1,14 +1,6 @@
 <div class="nav-tabs-navigation">
   <div class="nav-tabs-wrapper">
     <ul class="navbar-nav align-middle">
-      @if(Auth::check())
-        <li class="nav-item pt-2">
-          <a class="nav-link" href="{{ route('frontend.dashboard.index') }}">
-            <i class="fas fa-tachometer-alt"></i>
-            <p>@lang('common.dashboard')</p>
-          </a>
-        </li>
-      @endif
 
       <li class="nav-item pt-2">
         <a class="nav-link" href="{{ route('frontend.livemap.index') }}">
@@ -96,7 +88,11 @@
             @endif
           </a>
           <div class="dropdown-menu dropdown-menu-right">
-
+          @if(Auth::check())
+            <a class="dropdown-item" href="{{ route('frontend.dashboard.index') }}">
+              <i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;Dashboard
+            </a>
+          @endif
             <a class="dropdown-item" href="{{ route('frontend.profile.index') }}">
               <i class="far fa-user"></i>&nbsp;&nbsp;@lang('common.profile')
             </a>

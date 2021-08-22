@@ -7,9 +7,9 @@
 
 
   <div class="sidebar-wrapper">
-    <div class="logo" style="background: #272727; margin: 0px; text-align: center; min-height: 50px;">
+    <div class="logo" style="background: #272727; margin: 0px; text-align: center; min-height: 75px;">
       <a href="{{ url('/dashboard') }}">
-        <img src="{{ public_asset('/assets/img/wordmarkgreen.png') }}" width="70%" style="padding-right: 7%">
+        <img src="{{ public_asset('/assets/img/wordmarkgreen.png') }}" width="70%" style="padding-right: 7%; padding-top: 3%">
       </a>
     </div>
 

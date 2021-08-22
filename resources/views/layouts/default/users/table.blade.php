@@ -11,7 +11,7 @@
   <tbody>
   @foreach($users as $user)
     <tr>
-      <td style="width: 80px;">
+      <td style="width: 50px;">
         <div class="photo-container">
           @if ($user->avatar == null)
             <img class="rounded-circle"
@@ -33,7 +33,7 @@
         @endif
       </td>
       <td class="text-center">{{ $user->airline->icao }}</td>
-      <td class="text-center">
+      <td style="text-transform: none" class="text-center">
         @if($user->current_airport)
           {{ $user->curr_airport_id }}
         @else

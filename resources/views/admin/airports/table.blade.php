@@ -14,7 +14,7 @@
     <tbody>
     @foreach($airports as $airport)
       <tr>
-        <td><a href="{{ route('admin.airports.edit', [$airport->id]) }}">{{ $airport->icao }}</a></td>
+        <td><a style="text-transform: none" href="{{ route('admin.airports.edit', [$airport->id]) }}">{{ $airport->icao }}</a></td>
         <td>{{ $airport->name }}</td>
         <td>{{ $airport->location }}</td>
         <td style="text-align: center;">

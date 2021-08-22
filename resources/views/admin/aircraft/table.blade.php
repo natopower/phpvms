@@ -22,7 +22,7 @@
           -
         @endif
       </td>
-      <td style="text-align: center;">{{ $ac->airport_id }}</td>
+      <td style="text-align: center; text-transform: none">{{ $ac->airport_id }}</td>
       <td style="text-align: center;">
         @minutestotime($ac->flight_time)
       </td>

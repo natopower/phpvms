@@ -22,11 +22,11 @@
         </td>
         <td>
           @if($pirep->dpt_airport){{ $pirep->dpt_airport->name }}@endif
-                  (<a href="{{route('frontend.airports.show', [$pirep->dpt_airport_id])}}">{{$pirep->dpt_airport_id}}</a>)
+                  (<a style="text-transform: none" href="{{route('frontend.airports.show', [$pirep->dpt_airport_id])}}">{{$pirep->dpt_airport_id}}</a>)
         </td>
         <td>
           @if($pirep->arr_airport){{ $pirep->arr_airport->name }}@endif
-                  (<a href="{{route('frontend.airports.show', [$pirep->arr_airport_id])}}">{{$pirep->arr_airport_id}}</a>)
+                  (<a style="text-transform: none" href="{{route('frontend.airports.show', [$pirep->arr_airport_id])}}">{{$pirep->arr_airport_id}}</a>)
         </td>
         <td>
           @if($pirep->aircraft)
