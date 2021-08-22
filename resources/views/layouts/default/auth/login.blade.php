@@ -2,14 +2,13 @@
 @section('title', __('common.login'))
 
 @section('content')
-  <div class="col-md-4 ml-auto mr-auto content-center">
+  <div class="col-md-4 pt-5 ml-auto mr-auto content-center">
     <div class="card card-login card-plain">
       {{ Form::open(['url' => url('/login'), 'method' => 'post', 'class' => 'form']) }}
       <div class="header header-primary text-center">
         <div class="logo-container" style="width: 320px;">
-          <img src="{{ public_asset('/assets/frontend/img/logo.svg') }}" width="320" height="320"
-               style="background: #FFF">
-        </div>
+          <img src="{{ public_asset('/assets/img/wordmark.png') }}">
+        </div><br>
       </div>
       <div class="card-body">
         <div class="input-group form-group-no-border{{ $errors->has('email') ? ' has-error' : '' }} input-lg">
@@ -55,17 +54,17 @@
         @endif
 
       </div>
-      <div class="footer text-center">
+      <div class="footer pt-0 text-center">
         <button class="btn btn-primary btn-round btn-lg btn-block">@lang('common.login')</button>
       </div>
       <div class="pull-left">
         <h6>
-          <a href="{{ url('/register') }}" class="link">@lang('auth.createaccount')</a>
+          <a href="{{ url('/register') }}" style="color: #272727" class="link">Not a member yet?</a>
         </h6>
       </div>
       <div class="pull-right">
         <h6>
-          <a href="{{ url('/password/reset') }}" class="link">@lang('auth.forgotpassword')?</a>
+          <a href="{{ url('/password/reset') }}" style="color: #272727" class="link">@lang('auth.forgotpassword')?</a>
         </h6>
       </div>
       {{ Form::close() }}

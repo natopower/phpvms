@@ -17,7 +17,7 @@
   @yield('css')
 </head>
 
-<body class="login-page" style="background: #067ec1;">
+<body class="login-page" style="background: #adff98; color: #272727">
 <!-- Navbar -->
 
 <!-- End Navbar -->
@@ -34,8 +34,7 @@
           document.write(new Date().getFullYear())
         </script>
         , powered by
-        <a href="http://www.phpvms.net" target="_blank">phpvms</a>. Now-UI by
-        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
+        <a href="http://www.phpvms.net" target="_blank">phpvms</a>
       </div>
     </div>
   </footer>

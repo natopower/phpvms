@@ -28,8 +28,8 @@
                &nbsp;{{ $sf->airline->icao }} 
             @endif
         </td>
-        <td>{{ $sf->type }}</td>
-        <td>{{ $sf->name }}</td>
+        <td style="text-transform: none">{{ $sf->type }}</td>
+        <td style="text-transform: none">{{ $sf->name }}</td>
         <td style="width: 10%; text-align: center;" class="form-inline">
           {{ Form::open(['url' => '/admin/flights/'.$flight->id.'/subfleets',
                           'method' => 'delete',
