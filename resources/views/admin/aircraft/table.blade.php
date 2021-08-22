@@ -12,10 +12,10 @@
   @foreach($aircraft as $ac)
     <tr>
       <td><a href="{{ route('admin.aircraft.edit', [$ac->id]) }}">{{ $ac->name }}</a></td>
-      <td style="text-align: center;">{{ $ac->registration }}</td>
+      <td style="text-align: center; text-transform: none">{{ $ac->registration }}</td>
       <td>
         @if($ac->subfleet_id && $ac->subfleet)
-          <a href="{{ route('admin.subfleets.edit', [$ac->subfleet_id]) }}">
+          <a style="text-transform: none" href="{{ route('admin.subfleets.edit', [$ac->subfleet_id]) }}">
             {{ $ac->subfleet->name }}
           </a>
         @else

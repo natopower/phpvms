@@ -47,7 +47,7 @@
               <div class="icon-background">
                 <i class="fas fa-map-marker-alt icon"></i>
               </div>
-              <h3 class="header">{{ $current_airport }}</h3>
+              <h3 class="header" style="text-transform: uppercase">{{ $current_airport }}</h3>
               <h5 class="description">@lang('airports.current')</h5>
             </div>
           </div>
@@ -77,7 +77,7 @@
     <div class="col-sm-4">
       <div class="card border-blue-bottom">
         <div class="nav nav-tabs" role="tablist" style="background: #8C0AC8; color: #FFF;">
-          @lang('dashboard.weatherat', ['ICAO' => $current_airport])
+          weather at current airport
         </div>
         <div class="card-body">
           <!-- Tab panes -->

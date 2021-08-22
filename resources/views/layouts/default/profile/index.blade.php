@@ -28,7 +28,7 @@
         @endif
         <p>{{ $user->rank->name }} <br />
           @if($user->home_airport)
-            @lang('airports.home'): {{ $user->home_airport->icao }}
+            home airport: <text style="text-transform: none">{{ $user->home_airport->icao }}</text>
           @endif
         </p>
       </div>
@@ -62,7 +62,7 @@
               <div class="card text-center">
                 <div class="card-body">
                   <div class="social-description">
-                    <h2 class="card-title">{{ $user->current_airport->icao }}</h2>
+                    <h2 class="card-title" style="text-transform: none">{{ $user->current_airport->icao }}</h2>
                     <p class="card-text">@lang('airports.current')</p>
                   </div>
                 </div>

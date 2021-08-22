@@ -127,6 +127,30 @@
     background: #8C0AC8;
 }
 
+.btn-primary:hover {
+    background: #4e0470;
+}
+
+.btn-secondary {
+    background: #adff98;
+    color: #272727;
+}
+
+.btn-secondary:hover {
+    background: rgb(114, 182, 97);
+    color: #272727;
+}
+
+.btn-warning {
+    background: #fad815;
+    color: #272727;
+}
+
+.btn-warning:hover {
+    background: #cfb000;
+    color: #ffffff;
+}
+
 .full-height {
     height: 50vh;
 }
