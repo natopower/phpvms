@@ -10,8 +10,8 @@
     @endif
 
     @foreach($news as $item)
-      <h4 style="margin-top: 0px;">{{ $item->subject }}</h4>
-      <p class="category">{{ $item->user->name_private }}
+      <h4 class="font-weight-bold" style="margin-top: 0px;">{{ $item->subject }}</h4>
+      <p>{{ $item->user->name_private }}
         - {{ show_datetime($item->created_at) }}</p>
 
       {{ $item->body }}

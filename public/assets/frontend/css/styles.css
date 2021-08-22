@@ -1,6 +1,30 @@
 /**
  *
  */
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-ExtraBold.woff2') format('woff2'),
+        url('../fonts/Gilroy-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-Light.woff2') format('woff2'),
+        url('../fonts/Gilroy-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+.brand, .h1, .h2, .h3, .h4, .h5, .h6, .navbar, .td-name, a, h1, h2, h3, h4, h5, h6, p, td, body {
+    font-family: "Gilroy", Fallback, sans-serif;
+    text-transform: lowercase;
+}
+
 .select2-container {
     margin-top: 2px;
 }
@@ -49,6 +73,7 @@
 
 .nav-link {
     color: #272727 !important;
+    font-size: 1em !important;
 }
 
 .dashboard-box .icon {
@@ -96,6 +121,10 @@
 
 .border-blue-bottom {
     border-bottom: 3px solid #8C0AC8;
+}
+
+.btn-primary {
+    background: #8C0AC8;
 }
 
 .full-height {

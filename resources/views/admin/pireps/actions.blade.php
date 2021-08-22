@@ -27,6 +27,7 @@
         {{ Form::close() }}
       @endif
     </td>
+    <td>&nbsp;</td>
     <td>
       {{ Form::open(['url' => route('admin.pireps.destroy', [$pirep->id]),
             'method' => 'delete',
@@ -37,6 +38,7 @@
         {{ Form::button('Delete', ['type' => 'submit', 'class' => 'btn btn-danger']) }}
         {{ Form::close() }}
     </td>
+    <td>&nbsp;</td>
     @if ($on_edit_page === false)
       <td>
         <form action="{{ route('admin.pireps.edit', [$pirep->id]) }}">
@@ -46,6 +48,7 @@
           </button>
         </form>
       </td>
+      <td>&nbsp;</td>
     @endif
         <td>
         <form action="{{ route('frontend.pireps.show', [$pirep->id]) }}" target="_blank">

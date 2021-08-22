@@ -34,15 +34,15 @@
 </head>
 <body>
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg " style="background: #adff98;">
-  <a class="navbar-brand text-white" href="{{ url('/') }}" style="margin-left: 7.5%;">
-    <img src="{{ public_asset('/assets/img/wordmark.png') }}" width="30%" alt=""/>
+<nav class="navbar navbar-expand-lg" style="background: #adff98;">
+  <a class="navbar-brand" href="{{ url('/') }}" style="margin-left: 7.5%;">
+    <img src="{{ public_asset('/assets/img/wordmark.png') }}" width="300rem" alt=""/>
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fas fa-bars text-black"></i>
   </button>
-  <div class="collapse navbar-collapse justify-content-end" id="navigation">
+  <div class="collapse navbar-collapse justify-content-end" id="navigation" style="margin-right: 7%">
     @include('nav')
   </div>
 </nav>
