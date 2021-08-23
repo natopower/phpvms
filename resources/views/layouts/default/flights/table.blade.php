@@ -1,4 +1,5 @@
-  <table class="table table-hover" id="users-table">
+@foreach($flights as $flight)
+<table class="table table-hover" id="users-table">
   <thead>
   <th>flight number</th>
   <th>dep</th>
@@ -8,7 +9,6 @@
   <th>actions</th>
   </thead>
   <tbody>
-  @foreach($flights as $flight)
     <tr>
       <td style="vertical-align: middle" >{{ $flight->ident }}</td>
       <td style="text-transform: none; vertical-align: middle">{{$flight->dpt_airport_id}} @if($flight->dpt_time), {{ $flight->dpt_time }}@endif</td>
