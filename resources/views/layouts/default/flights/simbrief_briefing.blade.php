@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-sm-6">
       <h2>{{ $simbrief->xml->general->icao_airline }}{{ $simbrief->xml->general->flight_number }}
-        : {{ $simbrief->xml->origin->icao_code }} to {{ $simbrief->xml->destination->icao_code }}</h2>
+        : <text style="text-transform: none">{{ $simbrief->xml->origin->icao_code }} to {{ $simbrief->xml->destination->icao_code }}</text></h2>
     </div>
     <div class="col">
       @if (empty($simbrief->pirep_id))
@@ -62,7 +62,7 @@
 
                 <div class="col-4 text-center">
                   <div><p class="small text-uppercase pb-sm-0 mb-sm-1">Departure</p>
-                    <p class="border border-dark rounded p-1 small text-monospace">
+                    <p style="text-transform: none" class="border border-dark rounded p-1 small text-monospace">
                       {{ $simbrief->xml->origin->icao_code }}@if(!empty($simbrief->xml->origin->plan_rwy))
                         /{{ $simbrief->xml->origin->plan_rwy }}
                       @endif
@@ -72,7 +72,7 @@
 
                 <div class="col-4 text-center">
                   <div><p class="small text-uppercase pb-sm-0 mb-sm-1">Arrival</p>
-                    <p class="border border-dark rounded p-1 small text-monospace">
+                    <p style="text-transform: none" class="border border-dark rounded p-1 small text-monospace">
                       {{ $simbrief->xml->destination->icao_code }}@if(!empty($simbrief->xml->destination->plan_rwy))
                         /{{ $simbrief->xml->destination->plan_rwy }}
                       @endif
@@ -87,7 +87,7 @@
 
                 <div class="col-4 text-center">
                   <div><p class="small text-uppercase pb-sm-0 mb-sm-1">Aircraft</p>
-                    <p class="border border-dark rounded p-1 small text-monospace">
+                    <p style="text-transform: none" class="border border-dark rounded p-1 small text-monospace">
                       {{ $simbrief->xml->aircraft->name }}</p>
                   </div>
                 </div>
@@ -114,7 +114,7 @@
                 <div class="row">
                   <div class="col-12">
                     <div><p class="small text-uppercase pb-sm-0 mb-sm-1">Dispatcher Remarks</p>
-                      <p class="border border-dark rounded p-1 small text-monospace">
+                      <p style="text-transform: none" class="border border-dark rounded p-1 small text-monospace">
                         {{ $simbrief->xml->general->dx_rmk  }}</p>
                     </div>
                   </div>
@@ -141,7 +141,7 @@
             <div class="form-container-body">
               <div class="row">
                 <div class="col-12">
-                  <p class="border border-dark rounded p-1 small text-monospace">
+                  <p style="text-transform: none" class="border border-dark rounded p-1 small text-monospace">
                     {!!  str_replace("\n", "<br>", $simbrief->xml->atc->flightplan_text) !!}
                   </p>
                 </div>
@@ -156,29 +156,29 @@
                 <div class="col-12">
                   <div><p class="small text-uppercase pb-sm-0 mb-sm-1">Departure METAR</p>
                     <p
-                      class="border border-dark rounded p-1 small text-monospace">{{ $simbrief->xml->weather->orig_metar }}</p>
+                    style="text-transform: none" class="border border-dark rounded p-1 small text-monospace">{{ $simbrief->xml->weather->orig_metar }}</p>
                   </div>
                   <div><p class="small text-uppercase pb-sm-0 mb-sm-1">Departure TAF</p>
                     <p
-                      class="border border-dark rounded p-1 small text-monospace">{{ $simbrief->xml->weather->orig_taf }}</p>
+                    style="text-transform: none" class="border border-dark rounded p-1 small text-monospace">{{ $simbrief->xml->weather->orig_taf }}</p>
                   </div>
                   <hr/>
                   <div><p class="small text-uppercase pb-sm-0 mb-sm-1">Destination METAR</p>
                     <p
-                      class="border border-dark rounded p-1 small text-monospace">{{ $simbrief->xml->weather->dest_metar }}</p>
+                    style="text-transform: none" class="border border-dark rounded p-1 small text-monospace">{{ $simbrief->xml->weather->dest_metar }}</p>
                   </div>
                   <div><p class="small text-uppercase pb-sm-0 mb-sm-1">Destination TAF</p>
                     <p
-                      class="border border-dark rounded p-1 small text-monospace">{{ $simbrief->xml->weather->dest_taf }}</p>
+                    style="text-transform: none" class="border border-dark rounded p-1 small text-monospace">{{ $simbrief->xml->weather->dest_taf }}</p>
                   </div>
                   <hr/>
                   <div><p class="small text-uppercase pb-sm-0 mb-sm-1">Alternate METAR</p>
                     <p
-                      class="border border-dark rounded p-1 small text-monospace">{{ $simbrief->xml->weather->altn_metar }}</p>
+                    style="text-transform: none" class="border border-dark rounded p-1 small text-monospace">{{ $simbrief->xml->weather->altn_metar }}</p>
                   </div>
                   <div><p class="small text-uppercase pb-sm-0 mb-sm-1">Alternate TAF</p>
                     <p
-                      class="border border-dark rounded p-1 small text-monospace">{{ $simbrief->xml->weather->altn_taf }}</p>
+                    style="text-transform: none" class="border border-dark rounded p-1 small text-monospace">{{ $simbrief->xml->weather->altn_taf }}</p>
                   </div>
                 </div>
               </div>
@@ -187,7 +187,7 @@
         </div>
 
         <div class="col-6">
-          <div class="form-container">
+          <div class="form-container mb-0">
             <h6><i class="fas fa-info-circle"></i>
               &nbsp;Download Flight Plan
             </h6>
@@ -202,7 +202,7 @@
                   <br/>
                   <input id="download_fms"
                          type="submit"
-                         class="btn btn-outline-primary pull-right"
+                         class="btn btn-primary pull-right"
                          value="Download"/>
                 </div>
               </div>
@@ -237,7 +237,7 @@
                     <input type="hidden" name="OTHER" value="{{ $simbrief->xml->atc->section18 }}"/>
                     <input type="hidden" name="ENDURANCE" value="@secstohhmm($simbrief->xml->times->endurance)"/>
                     <input type="hidden" name="POB" value="{{ $simbrief->xml->weights->pax_count }}"/>
-                    <input id="ivao_prefile" type="submit" class="btn btn-primary" value="File ATC on IVAO"/>
+                    <input id="ivao_prefile" type="submit" class="btn btn-primary" value="prefile on IVAO"/>
                   </form>
                 </div>
                 <div class="col-4" align="center">
@@ -246,13 +246,13 @@
                     <input type="hidden" name="fuel_time" value="@secstohhmm($simbrief->xml->times->endurance)">
                     <input type="hidden" name="speed" value="@if(substr($simbrief->xml->atc->initial_spd,0,1) === '0') {{ substr($simbrief->xml->atc->initial_spd,1) }} @else {{ $simbrief->xml->atc->initial_spd }} @endif">
                     <input type="hidden" name="altitude" value="{{ $simbrief->xml->general->initial_altitude }}">
-                    <input id="vatsim_prefile" type="submit" class="btn btn-primary" value="File ATC on VATSIM"/>
+                    <input id="vatsim_prefile" type="submit" class="btn btn-primary" value="prefile on VATSIM"/>
                   </form>
                 </div>
                 <div class="col-4" align="center">
                   <a
                     href="http://skyvector.com/?chart=304&amp;fpl={{ $simbrief->xml->origin->icao_code}} {{ $simbrief->xml->general->route }} {{ $simbrief->xml->destination->icao_code}}"
-                    target="_blank" class="btn btn-info">View Route At SkyVector</a>
+                    target="_blank" style="text-transform: none" class="btn btn-primary">view on SkyVector</a>
                 </div>
               </div>
             </div>
@@ -262,7 +262,7 @@
               &nbsp;OFP
             </h6>
             <div class="form-container-body border border-dark">
-              <div class="overflow-auto" style="height: 750px;">
+              <div style="text-transform: none" class="overflow-auto" style="height: 750px;">
                 {!! $simbrief->xml->text->plan_html !!}
               </div>
             </div>
@@ -294,15 +294,6 @@
         </div>
       </div>
 
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      @if (empty($simbrief->pirep_id))
-        <a class="btn btn-outline-info pull-right"
-           style="margin-top: -10px;margin-bottom: 5px"
-           href="{{ url(route('frontend.simbrief.prefile', [$simbrief->id])) }}">Prefile PIREP</a>
-      @endif
     </div>
   </div>
 

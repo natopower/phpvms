@@ -6,7 +6,7 @@
   <form id="sbapiform">
     <div class="row">
       <h2>Create Simbrief Briefing</h2>
-      <div class="card">
+      <div class="card pt-3 ">
         <div class="col-md-12">
           <div class="row">
             <div class="col-8">
@@ -81,7 +81,7 @@
 
                 <div class="form-container-body">
                   <h6><i class="fas fa-info-circle"></i>&nbsp;Configuration And Load Information For
-                  <b>{{ $aircraft->registration }} ({{ $aircraft->subfleet->name }})</b></h6>
+                  <b style="text-transform: none">{{ $aircraft->registration }} ({{ $aircraft->subfleet->name }})</b></h6>
                   <div class="row">
                     @foreach($pax_load_sheet as $fare)
                       <div class="col-sm-3">
@@ -308,7 +308,7 @@
                     <div class="form-group">
                       <input type="button"
                          onclick="simbriefsubmit('{{ $flight->id }}', '{{ $aircraft->id }}', '{{ url(route('frontend.simbrief.briefing', [''])) }}');"
-                         class="btn btn-primary" value="Generate">
+                         class="mb-0 btn btn-primary" value="Generate">
                     </div>
                   </div>
                 </div>

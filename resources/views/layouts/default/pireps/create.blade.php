@@ -4,7 +4,7 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-      <h2>@lang('pireps.newflightreport')</h2>
+      <h2>file pirep</h2>
       @include('flash::message')
       @if(!empty($pirep))
         {{ Form::model($pirep, ['route' => 'frontend.pireps.store']) }}
