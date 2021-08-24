@@ -72,6 +72,7 @@
       {{ Widget::latestNews(['count' => 1]) }}
 
     </div>
+    
 
     {{-- Sidebar --}}
     <div class="col-sm-4">
@@ -95,6 +96,18 @@
           <!-- Tab panes -->
           <div class="tab-content">
             {{ Widget::latestPireps(['count' => 5]) }}
+          </div>
+        </div>
+      </div>
+
+      <div class="card card border-blue-bottom">
+        <div class="nav nav-tabs" role="tablist" style="background: #8C0AC8; color: #FFF;">
+          need to deadhead?
+        </div>
+        <div class="card-body">
+          <!-- Tab panes -->
+          <div class="tab-content">
+          @widget('Modules\JumpSeat\Widgets\JumpSeat', ['price' => 'free'])
           </div>
         </div>
       </div>
