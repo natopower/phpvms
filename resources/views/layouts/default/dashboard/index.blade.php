@@ -89,7 +89,7 @@
 
       <div class="card card border-blue-bottom">
         <div class="nav nav-tabs" role="tablist" style="background: #8C0AC8; color: #FFF;">
-          @lang('dashboard.recentreports')
+          your recent flights
         </div>
         <div class="card-body">
           <!-- Tab panes -->

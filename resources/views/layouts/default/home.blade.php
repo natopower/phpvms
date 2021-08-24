@@ -10,7 +10,7 @@
     <div class="col-sm-12">
       <h2 class="description font-weight-bold text-black">our newest pilots</h2>
       @foreach($users as $user)
-        <div class="card card-signup blue-bg">
+        <div class="card card-signup blue-bg mb-2">
           <div class="header header-primary text-center blue-bg">
             <h3 class="title title-up text-white">
               <a href="{{ route('frontend.profile.show', [$user->id]) }}" class="text-white">{{ $user->name_private }}</a>

@@ -89,11 +89,11 @@
   </div>
 
   {{-- Show the user's award if they have any --}}
-  @if ($user->awards)
+  @if ($user->awards >= '0')
     <div class="clearfix" style="height: 50px;"></div>
     <div class="row">
       <div class="col-sm-12">
-        <h3 class="description">@lang('profile.your-awards')</h3>
+        <h3 class="description">awards</h3>
         @foreach($user->awards->chunk(3) as $awards)
           <div class="row">
             @foreach($awards as $award)
@@ -120,7 +120,6 @@
         @endforeach
       </div>
     </div>
-
   @endif
 
   {{--

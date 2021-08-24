@@ -146,6 +146,26 @@
     color: #272727;
 }
 
+.btn-outline-primary {
+    color: #8C0AC8;
+}
+
+.btn-info { 
+    background: #adff98;
+    color: #272727;
+}
+
+.btn-info:hover {
+    background: rgb(114, 182, 97);
+    color: #272727;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    border-color: #670794;
+    background: #670794;
+}
+
 .btn-warning:hover {
     background: #cfb000;
     color: #ffffff;

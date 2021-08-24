@@ -9,9 +9,9 @@
     </thead>
     @foreach($flights as $flight)
         <tr>
-            <td style="vertical-align: middle" >{{ $flight->ident }}</td>
-            <td style="text-transform: none; vertical-align: middle">{{$flight->dpt_airport_id}} @if($flight->dpt_time), {{ $flight->dpt_time }}@endif</td>
-            <td style="text-transform: none; vertical-align: middle">{{$flight->arr_airport_id}} @if($flight->arr_time), {{ $flight->arr_time }}@endif</td>
+            <td style="text-transform: none; vertical-align: middle" >{{ $flight->ident }}</td>
+            <td style="text-transform: none; vertical-align: middle">{{$flight->dpt_airport_id}} @if($flight->dpt_time) @ {{ $flight->dpt_time }}@endif</td>
+            <td style="text-transform: none; vertical-align: middle">{{$flight->arr_airport_id}} @if($flight->arr_time) @ {{ $flight->arr_time }}@endif</td>
             <td style="vertical-align: middle">{{ $flight->distance }} {{ setting('units.distance') }}</td>
             <td style="vertical-align: middle">
             {{--
@@ -24,10 +24,10 @@
                 @if (!setting('pilots.only_flights_from_current') || $flight->dpt_airport_id == $user->current_airport->icao)
                     <button class="btn btn-round btn-icon btn-icon-mini save_flight {{ isset($saved[$flight->id]) ? 'btn-info':'' }}"
                             x-id="{{ $flight->id }}"
-                            x-saved-class="btn-info"
+                            x-saved-class="btn-secondary"
                             type="button"
                             title="@lang('flights.addremovebid')">
-                    <i class="fas fa-map-marker"></i>
+                    <i class="fas fa-check"></i>
                     </button>
                 @endif
             </td>

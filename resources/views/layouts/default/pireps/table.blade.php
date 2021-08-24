@@ -17,7 +17,7 @@
     @foreach($pireps as $pirep)
       <tr>
         <td>
-          <a href="{{ route('frontend.pireps.show', [
+          <a style="text-transform: none" href="{{ route('frontend.pireps.show', [
                       $pirep->id]) }}">{{ $pirep->airline->code }}{{ $pirep->ident }}</a>
         </td>
         <td>

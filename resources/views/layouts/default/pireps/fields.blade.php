@@ -160,7 +160,7 @@ flight reports that have been filed. You've been warned!
                                     ])}}">{{$pirep->dpt_airport->icao}}</a>)
               {{ Form::hidden('dpt_airport_id') }}
             @else
-              <div class="form-group">
+              <div style="text-transform: none" class="form-group">
                 {{ Form::select('dpt_airport_id', $airport_list, null, [
                         'class' => 'custom-select select2',
                         'style' => 'width: 100%',
@@ -180,7 +180,7 @@ flight reports that have been filed. You've been warned!
                                     ])}}">{{$pirep->arr_airport->icao}}</a>)
               {{ Form::hidden('arr_airport_id') }}
             @else
-              <div class="input-group input-group-sm form-group">
+              <div style="text-transform: none" class="input-group input-group-sm form-group">
                 {{ Form::select('arr_airport_id', $airport_list, null, [
                         'class' => 'custom-select select2',
                         'style' => 'width: 100%',
@@ -206,7 +206,7 @@ flight reports that have been filed. You've been warned!
               <p>{{ $pirep->aircraft->name }}</p>
               {{ Form::hidden('aircraft_id') }}
             @else
-              <div class="input-group input-group-sm form-group">
+              <div style="text-transform: none" class="input-group input-group-sm form-group">
                 {{-- You probably don't want to change this ID if you want the fare select to work --}}
                 {{ Form::select('aircraft_id', $aircraft_list, null, [
                     'id' => 'aircraft_select',

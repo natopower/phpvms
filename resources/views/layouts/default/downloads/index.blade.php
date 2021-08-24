@@ -5,7 +5,7 @@
   @include('flash::message')
   <div class="row">
     <div class="row-sm-12">
-      <h2>{{ trans_choice('common.download', 2) }}</h2>
+      <h2 class="ml-3 font-weight-bold">{{ trans_choice('common.download', 2) }}</h2>
     </div>
   </div>
   @if(!$grouped_files || \count($grouped_files) === 0)

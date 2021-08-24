@@ -2,16 +2,16 @@
   <div class="row">
     <div class="col-sm-10">
       <p>
-        <a href="{{ route('frontend.pireps.show', [$pirep->id]) }}">
+        <a style="text-transform: none;" href="{{ route('frontend.pireps.show', [$pirep->id]) }}">
           {{ $pirep->airline->code }}{{ $pirep->ident }}</a>
         -
         {{ $pirep->dpt_airport->name }}
-        (<a href="{{route('frontend.airports.show', [
+        (<a style="text-transform: none;" href="{{route('frontend.airports.show', [
                           'id' => $pirep->dpt_airport->icao
                           ])}}">{{$pirep->dpt_airport->icao}}</a>)
         <span class="description">to</span>
         {{ $pirep->arr_airport->name }}
-        (<a href="{{route('frontend.airports.show', [
+        (<a style="text-transform: none;" href="{{route('frontend.airports.show', [
                           'id' => $pirep->arr_airport->icao
                           ])}}">{{$pirep->arr_airport->icao}}</a>)
       </p>
@@ -29,7 +29,7 @@
           @endif
             {{ PirepState::label($pirep->state) }}</div>
           <a href="{{ route('frontend.pireps.edit', [$pirep->id]) }}"
-            class="btn btn-sm btn-info">@lang('common.edit')</a> 
+            class="btn btn-sm btn-warning">@lang('common.edit')</a> 
       </div>    
     </div>
   </div>

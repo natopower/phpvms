@@ -5,7 +5,7 @@
   <div class="card-body" style="min-height: 0px">
     @if($news->count() === 0)
       <div class="text-center text-muted" style="padding: 30px;">
-        @lang('widgets.latestnews.nonewsfound')
+        no news to share!
       </div>
     @endif
 
