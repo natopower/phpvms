@@ -17,9 +17,9 @@
             </h3>
             <div class="photo-container">
               @if ($user->avatar == null)
-                <img class="rounded-circle" src="{{ $user->gravatar(123) }}" style="width: 100px;">
+                <img class="rounded-circle" src="{{ $user->gravatar(123) }}" style="height: 100px;">
               @else
-                <img class="rounded-circle" src="{{ $user->avatar->url }}" style="width: 100px;">
+                <img class="rounded-circle" src="{{ $user->avatar->url }}" style="height: 100px;">
               @endif
             </div>
           </div>
@@ -33,7 +33,7 @@
               </h3>
             </div>
           </div>
-          <div class="footer p-0 text-center">
+          <div class="footer mb-0 text-center">
             <a href="{{ route('frontend.profile.show', [$user->id]) }}"
                class="btn btn-secondary font-weight-bold btn-sm">@lang('common.profile')</a>
           </div>
