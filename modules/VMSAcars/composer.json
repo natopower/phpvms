@@ -1,0 +1,31 @@
+{
+    "name": "phpvms/vmsacars-module",
+    "type": "laravel-module",
+    "description": "",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Nabeel Shahzad",
+            "email": "nabeel@phpvms.net"
+        }
+    ],
+    "require": {
+        "joshbrw/laravel-module-installer": "0.1.x"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\VMSAcars\\Providers\\VMSAcarsServiceProvider",
+                "Modules\\VMSAcars\\Providers\\EventServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\VMSAcars\\": ""
+        }
+    }
+}

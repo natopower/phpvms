@@ -1,0 +1,72 @@
+
+vmsacars_plugins:
+  - id: SAMPLE_PLUGIN
+    type: 0
+    name: sample_plugin.lua
+    script: |
+--
+-- This is a sample rule. It doesn't really do anything
+--
+
+-- This is required
+ScriptInfo = {
+	Name = "Test Rule",
+	Description = "This is a sample rule",
+	Points = 5,								-- Required for a rule
+}
+
+--
+-- All rules files require an "Evaluate" function that needs to return
+-- true or false if this rule has been violated. Once it's violated, the
+-- Evaluate() function isn't called again
+--
+function Evaluate ()
+
+	Acars.Log(string.format("Calling %s", ScriptInfo.Name))
+
+	-- Data fields available:
+	--	Data.Latitude
+	--	Data.Longitude
+	--	Data.Pitch (< 0 = pitched up, > 0 = pitched down)
+	--	Data.Bank (< 0 = banked right, > 0 = banked left)
+	--	Data.Heading
+	--	Data.MagVar
+	--	Data.GroundAltitude
+	--	Data.PlaneAltitude
+	--	Data.GroundSpeed
+	--	Data.AirspeedIndicated
+	--	Data.VerticalSpeed
+	--	Data.FuelQuantity (lbs)
+	--	Data.OnGround
+	--	Data.ParkBrake
+	--	Data.SimRate
+	--	Data.SimGroundSpeed (X-Plane only)
+	--	Data.SlewActive (Prepar3d only)
+	--	Data.GearUp
+	--
+	-- You have access to timers. You can start a timer with:
+	-- And then see how much time has elapsed. You can use this
+	-- to see if a condition has persisted for some period of time.
+	--
+	-- For example, this checks that the current vertical speed has lasted
+	-- for more than 3 seconds. If it goes under the threshold, we
+	-- just stop the timer, which will automatically reset it.
+	--
+	-- The TimeElapsed check will also stop and reset the timer if
+	-- the elapsed time meets the condition. TimeElapsed take the seconds
+	--
+	-- if Data.VerticalSpeed < 5000 then
+	--   Acars.StartTimer()
+	-- else
+	--   Acars.StopTimer()
+	--   return false
+	-- end
+	--
+	-- if Acars.TimeElapsed(3) == true then:
+	--   return true
+	-- end
+
+	return false
+end
+  |+
+  enabled: true
