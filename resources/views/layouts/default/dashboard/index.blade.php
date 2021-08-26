@@ -23,7 +23,7 @@
               <div class="icon-background">
                 <i class="fas fa-plane icon"></i>
               </div>
-              <h3 class="header"></h3>
+              <h3 class="header">{{ $user->flights}}</h3>
               <h5 class="description">{{ trans_choice('common.flight', $user->flights) }}</h5>
             </div>
           </div>
