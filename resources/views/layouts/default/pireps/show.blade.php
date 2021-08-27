@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-sm-8">
       <h2>{{ $pirep->airline->icao }}{{ $pirep->ident }}
-        : {{ $pirep->dpt_airport_id }} to {{ $pirep->arr_airport_id }}</h2>
+        : <text style="text-transform: none">{{ $pirep->dpt_airport_id }} - {{ $pirep->arr_airport_id }}</text></h2>
     </div>
 
     <div class="col-sm-4">
@@ -42,11 +42,8 @@
             DEPARTURE INFO
         --}}
         <div class="col-6 text-left">
-          <h4>
-            {{$pirep->dpt_airport->location}}
-          </h4>
           <p>
-            <a href="{{route('frontend.airports.show', $pirep->dpt_airport_id)}}">
+            <a style="text-transform: none" href="{{route('frontend.airports.show', $pirep->dpt_airport_id)}}">
               {{ $pirep->dpt_airport->full_name }} ({{  $pirep->dpt_airport_id }})</a>
             <br/>
             @if($pirep->block_off_time)
@@ -59,11 +56,8 @@
             ARRIVAL INFO
         --}}
         <div class="col-6 text-right">
-          <h4>
-            {{$pirep->arr_airport->location}}
-          </h4>
           <p>
-            <a href="{{route('frontend.airports.show', $pirep->arr_airport_id)}}">
+            <a style="text-transform: none" href="{{route('frontend.airports.show', $pirep->arr_airport_id)}}">
               {{ $pirep->arr_airport->full_name }} ({{  $pirep->arr_airport_id }})</a>
             <br/>
             @if($pirep->block_on_time)

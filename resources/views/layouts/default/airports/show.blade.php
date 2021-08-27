@@ -4,7 +4,7 @@
 @section('content')
   <div class="row" style="margin-bottom: 30px;">
     <div class="col-12">
-      <h2>{{ $airport->full_name }}</h2>
+      <h2 style="text-transform: none">{{ $airport->full_name }}</h2>
     </div>
 
     {{-- Show the weather widget in one column --}}
@@ -45,7 +45,7 @@
         <table class="table table-striped">
           <thead>
           <tr>
-            <th class="text-left">@lang('airports.ident')</th>
+            <th class="text-left">flight</th>
             <th class="text-left">@lang('airports.departure')</th>
             <th>@lang('flights.dep')</th>
             <th>@lang('flights.arr')</th>
@@ -59,7 +59,7 @@
                 </a>
               </td>
               <td class="text-left">{{ optional($flight->dpt_airport)->name }}
-                (<a href="{{route('frontend.airports.show',
+                (<a style="text-transform: none" href="{{route('frontend.airports.show',
                          ['id' => $flight->dpt_airport_id])}}">{{$flight->dpt_airport_id}}</a>)
               </td>
               <td>{{ $flight->dpt_time }}</td>
@@ -80,7 +80,7 @@
         <table class="table table-striped">
           <thead>
           <tr>
-            <th class="text-left">@lang('airports.ident')</th>
+            <th class="text-left">flight</th>
             <th class="text-left">@lang('airports.arrival')</th>
             <th>@lang('flights.dep')</th>
             <th>@lang('flights.arr')</th>
@@ -94,7 +94,7 @@
                 </a>
               </td>
               <td class="text-left">{{ $flight->arr_airport->name }}
-                (<a href="{{route('frontend.airports.show',
+                (<a style="text-transform: none" href="{{route('frontend.airports.show',
                          ['id'=>$flight->arr_airport->icao])}}">{{$flight->arr_airport->icao}}</a>)
               </td>
               <td>{{ $flight->dpt_time }}</td>
