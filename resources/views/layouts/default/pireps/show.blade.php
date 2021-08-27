@@ -70,7 +70,7 @@
       <div class="row">
         <div class="col-12">
           <div class="progress" style="margin: 20px 0;">
-            <div class="progress-bar progress-bar-success" role="progressbar"
+            <div class="progress-bar progress-bar-primary" role="progressbar"
                  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
                  style="width: {{$pirep->progress_percent}}%;">
             </div>
@@ -125,7 +125,7 @@
 
         <tr>
           <td>@lang('pireps.filedroute')</td>
-          <td>{{ $pirep->route }}</td>
+          <td style="text-transform: none">{{ $pirep->route }}</td>
         </tr>
 
         <tr>
@@ -136,7 +136,7 @@
         @if($pirep->score && $pirep->landing_rate)
           <tr>
             <td>Score</td>
-            <td>{{ $pirep->score }}</td>
+            <td>{{ $pirep->score }} fpm</td>
           </tr>
           <tr>
             <td>Landing Rate</td>

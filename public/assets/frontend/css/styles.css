@@ -123,6 +123,10 @@
     border-bottom: 3px solid #8C0AC8;
 }
 
+.progress-bar-primary {
+    background-color: #8C0AC8;
+}
+
 .btn-primary {
     background: #8C0AC8;
 }
