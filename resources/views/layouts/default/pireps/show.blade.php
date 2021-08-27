@@ -1,5 +1,5 @@
 @extends('app')
-@section('title', trans_choice('common.pirep', 1).' '.$pirep->ident)
+@section('title', trans_choice('common.pirep', 1).' - FLE'.$pirep->ident)
 
 @section('content')
   <div class="row">
