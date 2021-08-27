@@ -136,11 +136,11 @@
         @if($pirep->score && $pirep->landing_rate)
           <tr>
             <td>Score</td>
-            <td>{{ $pirep->score }} fpm</td>
+            <td>{{ $pirep->score }}</td>
           </tr>
           <tr>
             <td>Landing Rate</td>
-            <td>{{ number_format($pirep->landing_rate) }}</td>
+            <td>{{ number_format($pirep->landing_rate) }} fpm</td>
           </tr>
         @endif
 
