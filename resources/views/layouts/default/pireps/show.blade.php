@@ -44,7 +44,7 @@
         <div class="col-6 text-left">
           <p>
             <a style="text-transform: none" href="{{route('frontend.airports.show', $pirep->dpt_airport_id)}}">
-              {{ $pirep->dpt_airport->full_name }} ({{  $pirep->dpt_airport_id }})</a>
+              {{ $pirep->dpt_airport->full_name }}</a>
             <br/>
             @if($pirep->block_off_time)
               {{ $pirep->block_off_time->toDayDateTimeString() }}
@@ -58,7 +58,7 @@
         <div class="col-6 text-right">
           <p>
             <a style="text-transform: none" href="{{route('frontend.airports.show', $pirep->arr_airport_id)}}">
-              {{ $pirep->arr_airport->full_name }} ({{  $pirep->arr_airport_id }})</a>
+              {{ $pirep->arr_airport->full_name }}</a>
             <br/>
             @if($pirep->block_on_time)
               {{ $pirep->block_on_time->toDayDateTimeString() }}
