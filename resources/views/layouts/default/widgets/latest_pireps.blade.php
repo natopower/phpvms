@@ -9,8 +9,7 @@
         &nbsp;-&nbsp;
         <a style="text-transform: none" href="{{route('frontend.airports.show', [$p->arr_airport_id])}}">{{$p->arr_airport_id}}</a>&nbsp;
         @if(!empty($p->aircraft))
-          <text style="text-transform: none">{{ optional($p->aircraft)->registration }} ({{ $p->aircraft->icao }})
-</text>@endif
+          <text style="text-transform: none">{{ optional($p->aircraft)->registration }} ({{ $p->aircraft->icao }})</text>@endif
       </td>
     </tr>
   @endforeach

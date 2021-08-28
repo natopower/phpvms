@@ -119,6 +119,14 @@
     background: #8C0AC8;
 }
 
+.clearfix {
+    height: 40px !important;
+}
+
+.badge-primary {
+    background-color: #adff98;
+    color: #272727;
+}
 .border-blue-bottom {
     border-bottom: 3px solid #8C0AC8;
 }
