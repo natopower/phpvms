@@ -79,9 +79,9 @@ and being mindful of the rivets bindings
       <thead>
       <tr class="text-small header">
         <td class="text-small">{{ trans_choice('common.flight', 2) }}</td>
-        <td class="text-small">@lang('common.departure')</td>
-        <td class="text-small">@lang('common.arrival')</td>
-        <td class="text-small">@lang('common.aircraft')</td>
+        <td style="text-transform: none" class="text-small">@lang('common.departure')</td>
+        <td style="text-transform: none" class="text-small">@lang('common.arrival')</td>
+        <td style="text-transform: none" class="text-small">@lang('common.aircraft')</td>
         <td class="text-small">@lang('widgets.livemap.altitude')</td>
         <td class="text-small">@lang('widgets.livemap.gs')</td>
         <td class="text-small">@lang('widgets.livemap.distance')</td>
@@ -92,8 +92,8 @@ and being mindful of the rivets bindings
       <tr rv-each-pirep="pireps">
         <td><a href="#top_anchor" rv-on-click="controller.focusMarker">{ pirep.airline.icao }{ pirep.ident}</a></td>
         {{-- Show the full airport name on hover --}}
-        <td><span rv-title="pirep.dpt_airport.name">{ pirep.dpt_airport.icao }</span></td>
-        <td><span rv-title="pirep.arr_airport.name">{ pirep.arr_airport.icao }</span></td>
+        <td style="text-transform: none" ><span rv-title="pirep.dpt_airport.name">{ pirep.dpt_airport.icao }</span></td>
+        <td style="text-transform: none" ><span rv-title="pirep.arr_airport.name">{ pirep.arr_airport.icao }</span></td>
         <td>{ pirep.aircraft.registration }</td>
         <td>{ pirep.position.altitude }</td>
         <td>{ pirep.position.gs }</td>
