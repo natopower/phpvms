@@ -1,5 +1,5 @@
 <table>
-  @foreach($pireps as $p)
+  @foreach($pireps->where('user_id', Auth::id()) as $p)
     <tr>
       <td style="padding-right: 10px;">
         <span style="text-transform: none" class="title">{{ $p->airline->code }}{{ $p->flight_number }}</span>
