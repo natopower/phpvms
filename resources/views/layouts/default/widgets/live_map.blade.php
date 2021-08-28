@@ -35,7 +35,7 @@
                 { pirep.airline.icao }{ pirep.flight_number }
               </a>
             </h3>
-            <p id="map_flight_info">
+            <p style="text-transform: none" id="map_flight_info">
               { pirep.dpt_airport.name } ({ pirep.dpt_airport.icao }) @lang('common.to')
               { pirep.arr_airport.name } ({ pirep.arr_airport.icao })
             </p>
@@ -92,9 +92,9 @@ and being mindful of the rivets bindings
       <tr rv-each-pirep="pireps">
         <td><a href="#top_anchor" rv-on-click="controller.focusMarker">{ pirep.airline.icao }{ pirep.ident}</a></td>
         {{-- Show the full airport name on hover --}}
-        <td style="text-transform: none" ><span rv-title="pirep.dpt_airport.name">{ pirep.dpt_airport.icao }</span></td>
-        <td style="text-transform: none" ><span rv-title="pirep.arr_airport.name">{ pirep.arr_airport.icao }</span></td>
-        <td>{ pirep.aircraft.registration }</td>
+        <td style="text-transform: none"><span rv-title="pirep.dpt_airport.name">{ pirep.dpt_airport.icao }</span></td>
+        <td style="text-transform: none"><span rv-title="pirep.arr_airport.name">{ pirep.arr_airport.icao }</span></td>
+        <td style="text-transform: none">{ pirep.aircraft.registration }</td>
         <td>{ pirep.position.altitude }</td>
         <td>{ pirep.position.gs }</td>
         <td>{ pirep.position.distance.{{setting('units.distance')}} | fallback 0 } /
