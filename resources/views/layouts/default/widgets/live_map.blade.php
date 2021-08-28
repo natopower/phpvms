@@ -79,9 +79,9 @@ and being mindful of the rivets bindings
       <thead>
       <tr class="text-small header">
         <td class="text-small">{{ trans_choice('common.flight', 2) }}</td>
-        <td style="text-transform: none" class="text-small">@lang('common.departure')</td>
-        <td style="text-transform: none" class="text-small">@lang('common.arrival')</td>
-        <td style="text-transform: none" class="text-small">@lang('common.aircraft')</td>
+        <td class="text-small">@lang('common.departure')</td>
+        <td class="text-small">@lang('common.arrival')</td>
+        <td class="text-small">@lang('common.aircraft')</td>
         <td class="text-small">@lang('widgets.livemap.altitude')</td>
         <td class="text-small">@lang('widgets.livemap.gs')</td>
         <td class="text-small">@lang('widgets.livemap.distance')</td>
