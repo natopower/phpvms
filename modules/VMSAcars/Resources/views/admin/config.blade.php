@@ -15,7 +15,10 @@
             <p class="description">
               @if ($config->description)
                 @component('admin.components.info')
-                  {{$config->description}}
+                  {{$config->description}} 
+                  @if (!empty($config->default))
+                    <i>(default {{$config->default}})</i>
+                  @endif
                 @endcomponent
               @endif
             </p></td>

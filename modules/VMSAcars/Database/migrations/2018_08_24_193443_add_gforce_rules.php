@@ -1,8 +1,6 @@
 <?php
 
 use App\Contracts\Migration;
-use App\Support\Database;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 
 class AddGForceRules extends Migration

@@ -21,8 +21,6 @@ class AddConfig extends Migration
             $table->primary('id');
             $table->timestamps();
         });
-
-        $this->seedFile('settings.yml');
     }
 
     public function down()

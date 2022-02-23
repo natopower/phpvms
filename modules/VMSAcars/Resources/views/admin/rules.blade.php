@@ -58,7 +58,7 @@
             {{ Form::checkbox($rule->id.'_repeatable', null, $rule->repeatable) }}
           </td>
           <td>
-            {{ Form::number($rule->id.'_cooldown', $rule->points, [
+            {{ Form::number($rule->id.'_cooldown', $rule->cooldown, [
                   'class' => 'form-control',
                   'style' => 'width: 5em',
               ]) }}

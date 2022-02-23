@@ -1,8 +1,6 @@
 <?php
 
 use App\Contracts\Migration;
-use App\Support\Database;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 
@@ -25,14 +23,6 @@ class CreateVMSAcarsTables extends Migration
             $table->timestamps();
             $table->primary('id');
         });
-
-//        try {
-//            $path = base_path('modules/VMSAcars/Database/seeds/rules.yml');
-//            Database::seed_from_yaml_file($path, false);
-//        } catch (Exception $e) {
-//            Log::error('Unable to load rules.yml file');
-//            Log::error($e);
-//        }
     }
 
     /**

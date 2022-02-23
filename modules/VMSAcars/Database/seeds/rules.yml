@@ -8,9 +8,9 @@ vmsacars_rules:
     - delay
     - cooldown
   data:
-    - id: BEACON_LIGHTS_ON
-      name: Beacon lights on
-      description: Beacon lights on before pushback
+    - id: BEACON_LIGHTS_ON_ENGINE_RUNNING
+      name: Beacon lights on while engine(s) are running
+      description: Beacon lights on while engine(s) are running
       parameter:
       points: 0
       has_parameter: false
@@ -18,6 +18,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 0
     - id: STROBES_ON_IN_FLIGHT
       name: Strobes On
       description: Strobes on in-flight
@@ -28,6 +29,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 5
     - id: STROBES_ON_TAXI
       name: Strobes On (Taxiing)
       description: Strobes on while taxiing
@@ -38,6 +40,7 @@ vmsacars_rules:
       delay: 30
       cooldown: 60
       enabled: true
+      order: 10
     - id: LAND_LIGHTS_OVER_10K
       name: Landing lights off over 10k
       description: Altitude that landing lights need to be off above (will have a 500' margin)
@@ -48,6 +51,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 15
     - id: LAND_LIGHTS_UNDER_10K
       name: Landing lights on under 10k
       description: Altitude that landing lights need to be on below (will have a 500' margin)
@@ -58,6 +62,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 20
     - id: LAND_LIGHTS_OFF_TAXI
       name: Landing lights off while taxiing
       description: Landing lights should be off while taxiing
@@ -68,6 +73,7 @@ vmsacars_rules:
       delay: 30
       cooldown: 60
       enabled: true
+      order: 25
     - id: EXCESS_TAXI_SPEED
       name: Excess Taxi Speed
       description: If an aircraft exceeds this speed while taxiing (knots)
@@ -78,6 +84,7 @@ vmsacars_rules:
       delay: 30
       cooldown: 60
       enabled: true
+      order: 30
     - id: EXCESS_GFORCE
       name: Excess G-Forces
       description: If an aircraft exceeds the max gforce turning flight
@@ -88,6 +95,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 35
     - id: FUEL_REFILLED
       name: Fuel Refilled
       description:
@@ -98,6 +106,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 40
     - id: OVERSPEED_WARNING
       name: Overspeed
       description: If the overspeed warning comes up
@@ -108,6 +117,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 45
     - id: EXCESS_BANK
       name: Excesss Bank (degrees)
       description:
@@ -118,6 +128,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 50
     - id: EXCESS_PITCH
       name: Excesss Pitch (degrees)
       description:
@@ -128,6 +139,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 55
     - id: RUNWAY_OVERRUN
       name: Runway Overrun
       description: If the aircraft overruns the runway or taxirun
@@ -138,6 +150,7 @@ vmsacars_rules:
       delay: 0
       cooldown: 0
       enabled: true
+      order: 60
     - id: SIMRATE_INCREASED
       name: Simulation Rate Increased
       description:
@@ -148,6 +161,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 65
     - id: SLEW_ACTIVATED
       name: Slew Activated
       description:
@@ -158,6 +172,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 70
     - id: SPEED_UNDER_10K
       name: Overspeed under 10k
       description: "Speed of 250kts under 10,000' is exceeded"
@@ -168,6 +183,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 75
     - id: STABILIZED_APPROACH
       name: Stabilized Approach
       description: AGL where gear and flaps must be configured
@@ -178,6 +194,7 @@ vmsacars_rules:
       delay: 0
       cooldown: 0
       enabled: true
+      order: 80
     - id: STALL_WARNING
       name: Stall Warning
       description:
@@ -188,6 +205,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 85
     - id: THRUST_REVERSERS_INFLIGHT
       name: Thrust reversers enabled in flight
       description:
@@ -198,6 +216,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 90
     - id: THRUST_REVERSERS_SPEED
       name: Thrust reverser speed
       description: Speed by which thrust reversers must be deactivated (knots)
@@ -208,6 +227,7 @@ vmsacars_rules:
       delay: 10
       cooldown: 60
       enabled: true
+      order: 95
     - id: HARD_LANDING
       name: Hard Landing
       description: If there if a hard landing
@@ -218,3 +238,4 @@ vmsacars_rules:
       delay: 0
       cooldown: 0
       enabled: true
+      order: 100

@@ -21,7 +21,7 @@ class AdminController extends Controller
     public function index()
     {
         $config = Config::select('*')->orderBy('order', 'asc')->get();
-        $rules = Rule::all();
+        $rules = Rule::select('*')->orderBy('order', 'asc')->get();
 
         return view('vmsacars::admin.index', [
             'all_config' => $config,

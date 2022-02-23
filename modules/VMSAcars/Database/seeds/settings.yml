@@ -11,16 +11,48 @@ vmsacars_config:
       options: ''
       type: 'string'
       description: 'The license key for vmsACARS. You can retrieve this from your host dashboard'
+    - id: 'splash_screen_banner'
+      name: 'Splash Screen Banner'
+      order: 2
+      value: ''
+      default: ''
+      options: ''
+      type: 'string'
+      description: 'Replace the splash screen banner, PNG, sized to 500x375. Premium License only'
+    - id: 'splash_screen_logo'
+      name: 'Splash Screen Logo'
+      order: 3
+      value: ''
+      default: ''
+      options: ''
+      type: 'string'
+      description: 'URL to your VA logo for the splash screen, PNG, sized to 150x150 max'
+    - id: 'dashboard_logo'
+      name: 'Dashboard Logo'
+      order: 4
+      value: ''
+      default: ''
+      options: ''
+      type: 'string'
+      description: 'URL to your VA logo for the dashboard screen, PNG, sized to 300x64 max'
+    - id: 'discord_application_id'
+      name: 'Discord Application ID'
+      order: 5
+      value: ''
+      default: ''
+      options: ''
+      type: 'string'
+      description: 'Your Discord Application ID for Rich Presence customization. Premium License only'
     - id: 'disable_free_flights'
       name: 'Disable free flights'
-      order: 2
-      value: 'false'
+      order: 6
+      value: ''
       default: 'false'
       type: 'bool'
       description: 'Require a flight from search or a bid to be selected'
     - id: 'bids_only'
       name: 'Only show bids'
-      order: 3
+      order: 7
       value: ''
       default: 'true'
       options: ''
@@ -28,21 +60,21 @@ vmsacars_config:
       description: 'Only show bids in the flight list'
     - id: 'use_real_time'
       name: 'Use the system time, not the in-sim time'
-      order: 5
+      order: 8
       value: 'false'
       default: 'false'
       type: 'bool'
       description: 'Use the system time instead of the in-sim time'
     - id: 'fares_required'
       name: 'Fare entry is required'
-      order: 6
+      order: 9
       value: 'true'
       default: 'true'
       type: 'bool'
       description: 'Entries for the fares are required to be entered'
     - id: 'acars_update_timer'
       name: 'ACARS update timer (in seconds)'
-      order: 7
+      order: 10
       value: '30'
       default: '30'
       options: '15, 30, 60, 90, 120, 240, 300, 360, 480'
@@ -50,7 +82,7 @@ vmsacars_config:
       description: 'How often the ACARS map updates flights'
     - id: 'position_report_ground'
       name: 'Ground position report interval (in seconds)'
-      order: 9
+      order: 11
       value: '15'
       default: '15'
       options: '15, 30, 60, 90, 120, 240, 300, 360, 480'
@@ -72,4 +104,19 @@ vmsacars_config:
       options: '15, 30, 60, 90, 120, 240, 300, 360, 480'
       type: 'select'
       description: ''
+    - id: 'flight_resume_last_point_distance'
+      name: 'Flight resumes within last distance'
+      order: 18
+      value: 15
+      default: 15
+      options:
+      type: 'int'
+      description: 'Pilot must be within N nmi of the last position report to resume'
+    - id: 'check_engine_for_arrived'
+      name: 'Engine(s) must be stopped for arrival state'
+      order: 25
+      value: 'false'
+      default: 'false'
+      type: 'bool'
+      description: 'Engines must be stopped for arrival state'
       
