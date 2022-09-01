@@ -10,15 +10,13 @@ use App\Models\Flight;
 use App\Models\Pirep;
 use App\Models\SimBrief;
 use App\Models\User;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
 class BidService extends Service
 {
-    /** @var FareService */
-    private $fareSvc;
-
-    /** @var FlightService */
-    private $flightSvc;
+    private FareService $fareSvc;
+    private FlightService $flightSvc;
 
     public function __construct(FareService $fareSvc, FlightService $flightSvc)
     {
@@ -29,11 +27,12 @@ class BidService extends Service
     /**
      * Get a specific bid for a user
      *
-     * @param $bid_id
+     * @param User $user
+     * @param      $bid_id
      *
-     * @return \App\Models\Bid|\Illuminate\Database\Eloquent\Model|object|null
+     * @return Bid|null
      */
-    public function getBid(User $user, $bid_id): Bid
+    public function getBid(User $user, $bid_id): ?Bid
     {
         $with = [
             'flight',
@@ -48,7 +47,18 @@ class BidService extends Service
             'flight.subfleets.fares',
         ];
 
-        return Bid::with($with)->where(['id' => $bid_id])->first();
+        /** @var Bid $bid */
+        $bid = Bid::with($with)->where(['id' => $bid_id])->first();
+        if ($bid === null) {
+            return null;
+        }
+
+        // Reconcile the aircraft for this bid
+        // TODO: Only do this if there isn't a Simbrief attached?
+        $bid->flight = $this->flightSvc->filterSubfleets($user, $bid->flight);
+        $bid->flight = $this->fareSvc->getReconciledFaresForFlight($bid->flight);
+
+        return $bid;
     }
 
     /**
@@ -56,9 +66,9 @@ class BidService extends Service
      *
      * @param \App\Models\User $user
      *
-     * @return mixed
+     * @return Bid[]
      */
-    public function findBidsForUser(User $user)
+    public function findBidsForUser(User $user): Collection|array|null
     {
         $with = [
             'flight',
@@ -127,8 +137,10 @@ class BidService extends Service
                 throw new BidExistsForFlight($flight);
             }
 
+            // This is already controlled above at line 114 with user bid count,
+            // To prevent or allow multiple bids. Should not be here at all
             if (setting('bids.allow_multiple_bids') === false) {
-                throw new BidExistsForFlight($flight);
+                // throw new BidExistsForFlight($flight);
             }
         } else {
             /* @noinspection NestedPositiveIfStatementsInspection */

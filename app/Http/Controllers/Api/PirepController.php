@@ -25,6 +25,7 @@ use App\Models\Pirep;
 use App\Models\PirepComment;
 use App\Models\PirepFare;
 use App\Models\PirepFieldValue;
+use App\Models\User;
 use App\Repositories\JournalRepository;
 use App\Repositories\PirepRepository;
 use App\Services\Finance\PirepFinanceService;
@@ -37,11 +38,11 @@ use Illuminate\Support\Facades\Log;
 
 class PirepController extends Controller
 {
-    private $financeSvc;
-    private $journalRepo;
-    private $pirepRepo;
-    private $pirepSvc;
-    private $userSvc;
+    private PirepFinanceService $financeSvc;
+    private JournalRepository $journalRepo;
+    private PirepRepository $pirepRepo;
+    private PirepService $pirepSvc;
+    private UserService $userSvc;
 
     /**
      * @param PirepFinanceService $financeSvc
@@ -235,8 +236,12 @@ class PirepController extends Controller
         Log::info('PIREP Update, user '.Auth::id());
         Log::info($request->getContent());
 
+        /** @var User $user */
         $user = Auth::user();
+
+        /** @var Pirep $pirep */
         $pirep = Pirep::find($pirep_id);
+
         $this->checkCancelled($pirep);
 
         $attrs = $this->parsePirep($request);
@@ -278,6 +283,7 @@ class PirepController extends Controller
     {
         Log::info('PIREP file, user '.Auth::id(), $request->post());
 
+        /** @var User $user */
         $user = Auth::user();
 
         // Check if the status is cancelled...
@@ -328,16 +334,18 @@ class PirepController extends Controller
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      *
-     * @return PirepResource
+     * @return mixed
      */
     public function cancel($pirep_id, Request $request)
     {
-        Log::info('PIREP Cancel, user '.Auth::id(), $request->post());
+        Log::info('PIREP '.$pirep_id.' Cancel, user '.Auth::id(), $request->post());
 
         $pirep = Pirep::find($pirep_id);
-        $this->pirepSvc->cancel($pirep);
+        if (!empty($pirep)) {
+            $this->pirepSvc->cancel($pirep);
+        }
 
-        return new PirepResource($pirep);
+        return $this->message('PIREP '.$pirep_id.' cancelled');
     }
 
     /**

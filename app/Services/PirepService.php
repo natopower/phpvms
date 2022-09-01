@@ -35,20 +35,21 @@ use App\Models\User;
 use App\Repositories\AircraftRepository;
 use App\Repositories\AirportRepository;
 use App\Repositories\PirepRepository;
+use App\Support\Units\Fuel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
 
 class PirepService extends Service
 {
-    private $aircraftRepo;
-    private $airportRepo;
-    private $airportSvc;
-    private $fareSvc;
-    private $geoSvc;
-    private $pirepRepo;
-    private $simBriefSvc;
-    private $userSvc;
+    private AircraftRepository $aircraftRepo;
+    private AirportRepository $airportRepo;
+    private AirportService $airportSvc;
+    private FareService $fareSvc;
+    private GeoService $geoSvc;
+    private PirepRepository $pirepRepo;
+    private SimBriefService $simBriefSvc;
+    private UserService $userSvc;
 
     /**
      * @param AirportRepository  $airportRepo
@@ -206,7 +207,7 @@ class PirepService extends Service
     /**
      * Create a new PIREP with some given fields
      *
-     * @param Pirep                   $pirep
+     * @param Pirep $pirep
      * @param array PirepFieldValue[] $field_values
      *
      * @return Pirep
@@ -243,7 +244,7 @@ class PirepService extends Service
 
         // Copy some fields over from Flight if we have it
         if ($pirep->flight) {
-            $pirep->planned_distance = $pirep->flight->distance;
+            $pirep->planned_distance = $pirep->flight->planned_distance;
             $pirep->planned_flight_time = $pirep->flight->flight_time;
         }
 
@@ -336,7 +337,7 @@ class PirepService extends Service
 
         // Copy some fields over from Flight if we have it
         if ($pirep->flight) {
-            $pirep->planned_distance = $pirep->flight->distance;
+            $pirep->distance = $pirep->flight->distance;
             $pirep->planned_flight_time = $pirep->flight->flight_time;
         }
 
@@ -460,19 +461,6 @@ class PirepService extends Service
      */
     public function submit(Pirep $pirep)
     {
-        // Figure out what default state should be. Look at the default
-        // behavior from the rank that the pilot is assigned to
-        $default_state = PirepState::PENDING;
-        if ($pirep->source === PirepSource::ACARS) {
-            if ($pirep->user->rank->auto_approve_acars) {
-                $default_state = PirepState::ACCEPTED;
-            }
-        } else {
-            if ($pirep->user->rank->auto_approve_manual) {
-                $default_state = PirepState::ACCEPTED;
-            }
-        }
-
         // Check if there is a simbrief_id, change it to be set to the PIREP
         // at the end of the flight when it's been submitted finally.
         // Prefile, Save (as draft) and File already have this but the Submit button
@@ -488,6 +476,24 @@ class PirepService extends Service
 
         Log::info('New PIREP filed', [$pirep]);
         event(new PirepFiled($pirep));
+
+        $pirep->refresh();
+
+        // Figure out what pirep state should be, if nothing provided yet.
+        if ($pirep->state != PirepState::ACCEPTED && $pirep->state != PirepState::REJECTED) {
+            $default_state = PirepState::PENDING;
+        } else {
+            $default_state = $pirep->state;
+        }
+
+        // If pirep is still at PENDING or DRAFT state decide the default behavior by looking at rank settings
+        if ($pirep->state === PirepState::PENDING || $pirep->state === PirepState::DRAFT) {
+            if ($pirep->source === PirepSource::ACARS && $pirep->user->rank->auto_approve_acars) {
+                $default_state = PirepState::ACCEPTED;
+            } elseif ($pirep->source === PirepSource::MANUAL && $pirep->user->rank->auto_approve_manual) {
+                $default_state = PirepState::ACCEPTED;
+            }
+        }
 
         // only update the pilot last state if they are accepted
         if ($default_state === PirepState::ACCEPTED) {
@@ -659,11 +665,14 @@ class PirepService extends Service
 
         Log::info('PIREP '.$pirep->id.' state change to ACCEPTED');
 
+        $fuel_remain = $pirep->block_fuel->internal() - $pirep->fuel_used->internal();
+        $fuel_on_board = Fuel::make($fuel_remain, config('phpvms.internal_units.fuel'));
+
         // Update the aircraft
         $pirep->aircraft->flight_time = $pirep->aircraft->flight_time + $pirep->flight_time;
         $pirep->aircraft->airport_id = $pirep->arr_airport_id;
         $pirep->aircraft->landing_time = $pirep->updated_at;
-        $pirep->aircraft->fuel_onboard = $pirep->block_fuel - $pirep->fuel_used;
+        $pirep->aircraft->fuel_onboard = $fuel_on_board;
         $pirep->aircraft->save();
 
         $pirep->refresh();

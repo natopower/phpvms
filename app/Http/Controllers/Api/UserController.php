@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Contracts\Controller;
+use App\Exceptions\BidNotFound;
 use App\Exceptions\Unauthorized;
 use App\Exceptions\UserNotFound;
 use App\Http\Resources\Bid as BidResource;
@@ -16,7 +17,6 @@ use App\Repositories\FlightRepository;
 use App\Repositories\PirepRepository;
 use App\Repositories\UserRepository;
 use App\Services\BidService;
-use App\Services\FlightService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,17 +25,15 @@ use Prettus\Repository\Exceptions\RepositoryException;
 
 class UserController extends Controller
 {
-    private $bidSvc;
-    private $flightRepo;
-    private $flightSvc;
-    private $pirepRepo;
-    private $userRepo;
-    private $userSvc;
+    private BidService $bidSvc;
+    private FlightRepository $flightRepo;
+    private PirepRepository $pirepRepo;
+    private UserRepository $userRepo;
+    private UserService $userSvc;
 
     /**
      * @param BidService       $bidSvc
      * @param FlightRepository $flightRepo
-     * @param FlightService    $flightSvc
      * @param PirepRepository  $pirepRepo
      * @param UserRepository   $userRepo
      * @param UserService      $userSvc
@@ -43,14 +41,12 @@ class UserController extends Controller
     public function __construct(
         BidService $bidSvc,
         FlightRepository $flightRepo,
-        FlightService $flightSvc,
         PirepRepository $pirepRepo,
         UserRepository $userRepo,
         UserService $userSvc
     ) {
         $this->bidSvc = $bidSvc;
         $this->flightRepo = $flightRepo;
-        $this->flightSvc = $flightSvc;
         $this->pirepRepo = $pirepRepo;
         $this->userRepo = $userRepo;
         $this->userSvc = $userSvc;
@@ -160,6 +156,10 @@ class UserController extends Controller
 
         // Return the current bid
         $bid = $this->bidSvc->getBid($user, $bid_id);
+        if ($bid === null) {
+            throw new BidNotFound($bid_id);
+        }
+
         if ($bid->user_id !== $user->id) {
             throw new Unauthorized(new \Exception('Bid not not belong to authenticated user'));
         }

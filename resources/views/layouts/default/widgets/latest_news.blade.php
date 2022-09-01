@@ -14,7 +14,7 @@
       <p>{{ $item->user->name_private }}
         - {{ show_datetime($item->created_at) }}</p>
 
-      {{ $item->body }}
+      {!! $item->body !!}
     @endforeach
   </div>
 </div>

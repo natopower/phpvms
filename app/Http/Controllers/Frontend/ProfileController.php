@@ -10,7 +10,6 @@ use App\Repositories\AirlineRepository;
 use App\Repositories\AirportRepository;
 use App\Repositories\UserRepository;
 use App\Support\Countries;
-use App\Support\Discord;
 use App\Support\Timezonelist;
 use App\Support\Utils;
 use Illuminate\Http\Request;
@@ -25,9 +24,9 @@ use Nwidart\Modules\Facades\Module;
 
 class ProfileController extends Controller
 {
-    private $airlineRepo;
-    private $airportRepo;
-    private $userRepo;
+    private AirlineRepository $airlineRepo;
+    private AirportRepository $airportRepo;
+    private UserRepository $userRepo;
 
     /**
      * ProfileController constructor.
@@ -80,22 +79,29 @@ class ProfileController extends Controller
     public function show($id)
     {
         /** @var \App\Models\User $user */
-        $user = User::with(['awards', 'fields', 'fields.field'])
-            ->where('id', $id)
-            ->first();
+        $with = [
+            'airline',
+            'awards',
+            'current_airport',
+            'fields.field',
+            'home_airport',
+            'last_pirep',
+            'rank',
+            'typeratings',
+        ];
+        $user = User::with($with)->where('id', $id)->first();
 
         if (empty($user)) {
             Flash::error('User not found!');
+
             return redirect(route('frontend.dashboard.index'));
         }
 
-        $airports = $this->airportRepo->all();
         $userFields = $this->userRepo->getUserFields($user, true);
 
         return view('profile.index', [
             'user'       => $user,
             'userFields' => $userFields,
-            'airports'   => $airports,
             'acars'      => $this->acarsEnabled(),
         ]);
     }
@@ -112,18 +118,17 @@ class ProfileController extends Controller
     public function edit(Request $request)
     {
         /** @var \App\Models\User $user */
-        $user = User::with(['fields', 'fields.field'])
-            ->where('id', Auth::user()->id)
-            ->first();
+        $user = User::with('fields.field')->where('id', Auth::id())->first();
 
         if (empty($user)) {
             Flash::error('User not found!');
+
             return redirect(route('frontend.dashboard.index'));
         }
 
         $airlines = $this->airlineRepo->selectBoxList();
         $airports = $this->airportRepo->selectBoxList(false, setting('pilots.home_hubs_only'));
-        $userFields = $this->userRepo->getUserFields($user, true);
+        $userFields = $this->userRepo->getUserFields($user);
 
         return view('profile.edit', [
             'user'       => $user,
@@ -178,10 +183,6 @@ class ProfileController extends Controller
             $req_data['password'] = Hash::make($req_data['password']);
         }
 
-        if (isset($req_data['avatar']) !== null) {
-            Storage::delete($user->avatar);
-        }
-
         // Find out the user's private channel id
         /*
         // TODO: Uncomment when Discord API functionality is enabled
@@ -193,9 +194,13 @@ class ProfileController extends Controller
         }*/
 
         if ($request->hasFile('avatar')) {
+            if ($user->avatar !== null) {
+                Storage::delete($user->avatar);
+            }
+
             $avatar = $request->file('avatar');
             $file_name = $user->ident.'.'.$avatar->getClientOriginalExtension();
-            $path = "avatars/{$file_name}";
+            $path = "avatars/$file_name";
 
             // Create the avatar, resizing it and keeping the aspect ratio.
             // https://stackoverflow.com/a/26892028

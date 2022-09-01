@@ -4,6 +4,7 @@
     <th>Name</th>
     <th>Airline</th>
     <th>Type</th>
+    <th>Hub</th>
     <th>Aircraft</th>
     <th></th>
     </thead>

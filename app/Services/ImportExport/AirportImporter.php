@@ -18,7 +18,7 @@ class AirportImporter extends ImportExport
      */
     public static $columns = [
         'icao'                 => 'required',
-        'iata'                 => 'required',
+        'iata'                 => 'nullable',
         'name'                 => 'required',
         'location'             => 'nullable',
         'country'              => 'nullable',
@@ -30,6 +30,7 @@ class AirportImporter extends ImportExport
         'fuel_100ll_cost'      => 'nullable|numeric',
         'fuel_jeta_cost'       => 'nullable|numeric',
         'fuel_mogas_cost'      => 'nullable|numeric',
+        'notes'                => 'nullable',
     ];
 
     /**

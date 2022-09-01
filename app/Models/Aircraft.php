@@ -3,15 +3,20 @@
 namespace App\Models;
 
 use App\Contracts\Model;
+use App\Models\Casts\FuelCast;
 use App\Models\Enums\AircraftStatus;
 use App\Models\Traits\ExpensableTrait;
 use App\Models\Traits\FilesTrait;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Znck\Eloquent\Traits\BelongsToThrough;
 
 /**
  * @property int      id
  * @property mixed    subfleet_id
  * @property string   airport_id   The apt where the aircraft is
+ * @property string   hub_id       The apt where the aircraft is based
  * @property string   ident
  * @property string   name
  * @property string   icao
@@ -21,6 +26,7 @@ use Carbon\Carbon;
  * @property float    zfw
  * @property string   hex_code
  * @property Airport  airport
+ * @property Airport  hub
  * @property Subfleet subfleet
  * @property int      status
  * @property int      state
@@ -29,14 +35,17 @@ use Carbon\Carbon;
  */
 class Aircraft extends Model
 {
+    use BelongsToThrough;
     use ExpensableTrait;
     use FilesTrait;
+    use HasFactory;
 
     public $table = 'aircraft';
 
     protected $fillable = [
         'subfleet_id',
         'airport_id',
+        'hub_id',
         'iata',
         'icao',
         'name',
@@ -45,6 +54,7 @@ class Aircraft extends Model
         'flight_time',
         'mtow',
         'zfw',
+        'fuel_onboard',
         'status',
         'state',
     ];
@@ -53,11 +63,12 @@ class Aircraft extends Model
      * The attributes that should be casted to native types.
      */
     protected $casts = [
-        'subfleet_id' => 'integer',
-        'mtow'        => 'float',
-        'zfw'         => 'float',
-        'flight_time' => 'float',
-        'state'       => 'integer',
+        'subfleet_id'  => 'integer',
+        'mtow'         => 'float',
+        'zfw'          => 'float',
+        'flight_time'  => 'float',
+        'fuel_onboard' => FuelCast::class,
+        'state'        => 'integer',
     ];
 
     /**
@@ -73,39 +84,79 @@ class Aircraft extends Model
     ];
 
     /**
-     * @return string
+     * @return Attribute
      */
-    public function getIdentAttribute(): string
+    public function active(): Attribute
     {
-        return $this->registration.' ('.$this->icao.')';
+        return Attribute::make(
+            get: fn ($_, $attr) => $attr['status'] === AircraftStatus::ACTIVE
+        );
     }
 
     /**
-     * See if this aircraft is active
-     *
-     * @return bool
+     * @return Attribute
      */
-    public function getActiveAttribute(): bool
+    public function icao(): Attribute
     {
-        return $this->status === AircraftStatus::ACTIVE;
+        return Attribute::make(
+            set: fn ($value) => strtoupper($value)
+        );
     }
 
     /**
-     * Capitalize the ICAO when set
-     *
-     * @param $icao
+     * @return Attribute
      */
-    public function setIcaoAttribute($icao): void
+    public function ident(): Attribute
     {
-        $this->attributes['icao'] = strtoupper($icao);
+        return Attribute::make(
+            get: fn ($_, $attrs) => $attrs['registration'].' ('.$attrs['icao'].')'
+        );
+    }
+
+    /**
+     * Return the landing time
+     *
+     * @return Attribute
+     */
+    public function landingTime(): Attribute
+    {
+        return Attribute::make(
+            get: function ($_, $attrs) {
+                if (array_key_exists('landing_time', $attrs) && filled($attrs['landing_time'])) {
+                    return new Carbon($attrs['landing_time']);
+                }
+
+                return $attrs['landing_time'];
+            }
+        );
     }
 
     /**
      * foreign keys
      */
+    public function airline()
+    {
+        return $this->belongsToThrough(Airline::class, Subfleet::class);
+    }
+
     public function airport()
     {
         return $this->belongsTo(Airport::class, 'airport_id');
+    }
+
+    public function hub()
+    {
+        return $this->hasOne(Airport::class, 'id', 'hub_id');
+    }
+
+    public function pireps()
+    {
+        return $this->hasMany(Pirep::class, 'aircraft_id');
+    }
+
+    public function simbriefs()
+    {
+        return $this->hasMany(SimBrief::class, 'aircraft_id');
     }
 
     public function subfleet()

@@ -3,6 +3,7 @@
   <th>Name</th>
   <th style="text-align: center;">Registration</th>
   <th>Subfleet</th>
+  <th style="text-align: center;">Hub</th>
   <th style="text-align: center;">Location</th>
   <th style="text-align: center;">Hours</th>
   <th style="text-align: center;">Active</th>

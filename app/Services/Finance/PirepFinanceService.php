@@ -4,6 +4,7 @@ namespace App\Services\Finance;
 
 use App\Contracts\Service;
 use App\Events\Expenses as ExpensesEvent;
+use App\Events\Fares as FaresEvent;
 use App\Models\Aircraft;
 use App\Models\Airport;
 use App\Models\Enums\ExpenseType;
@@ -13,6 +14,7 @@ use App\Models\Enums\PirepSource;
 use App\Models\Enums\PirepState;
 use App\Models\Enums\PirepStatus;
 use App\Models\Expense;
+use App\Models\Fare;
 use App\Models\Pirep;
 use App\Models\Subfleet;
 use App\Repositories\ExpenseRepository;
@@ -25,10 +27,10 @@ use Illuminate\Support\Facades\Log;
 
 class PirepFinanceService extends Service
 {
-    private $expenseRepo;
-    private $fareSvc;
-    private $financeSvc;
-    private $journalRepo;
+    private ExpenseRepository $expenseRepo;
+    private FareService $fareSvc;
+    private FinanceService $financeSvc;
+    private JournalRepository $journalRepo;
 
     /**
      * FinanceService constructor.
@@ -81,6 +83,7 @@ class PirepFinanceService extends Service
         // Now start and pay from scratch
         $this->payFuelCosts($pirep);
         $this->payFaresForPirep($pirep);
+        $this->payFaresEventsForPirep($pirep);
         $this->payExpensesForSubfleet($pirep);
         $this->payExpensesForPirep($pirep);
         $this->payAirportExpensesForPirep($pirep);
@@ -146,6 +149,53 @@ class PirepFinanceService extends Service
     }
 
     /**
+     * Collect all of the fares from listeners and apply those to the journal
+     *
+     * @param Pirep $pirep
+     *
+     * @throws \UnexpectedValueException
+     * @throws \InvalidArgumentException
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
+    public function payFaresEventsForPirep(Pirep $pirep): void
+    {
+        // Throw an event and collect any fares returned from it
+        $gathered_fares = event(new FaresEvent($pirep));
+        if (!\is_array($gathered_fares)) {
+            return;
+        }
+
+        foreach ($gathered_fares as $event_fare) {
+            if (!\is_array($event_fare)) {
+                continue;
+            }
+
+            foreach ($event_fare as $fare) {
+                // Make sure it's of type Fare Model
+                if (!($fare instanceof Fare)) {
+                    Log::info('Finance: Event Fare is not an instance of Fare Model, aborting process!');
+                    continue;
+                }
+
+                $credit = Money::createFromAmount($fare->price);
+                $debit = Money::createFromAmount($fare->cost);
+                Log::info('Finance: Income From Listener N='.$fare->name.', C='.$credit.', D='.$debit);
+
+                $this->journalRepo->post(
+                    $pirep->airline->journal,
+                    $credit,
+                    $debit,
+                    $pirep,
+                    $fare->name,
+                    null,
+                    $fare->notes,
+                    'additional-sales'
+                );
+            }
+        }
+    }
+
+    /**
      * Calculate the fuel used by the PIREP and add those costs in
      *
      * @param Pirep $pirep
@@ -190,18 +240,18 @@ class PirepFinanceService extends Service
             if ($prev_flight) {
                 // If there is a pirep use its values to calculate the remaining fuel
                 // and calculate the uplifted fuel amount for this pirep
-                $fuel_amount = $pirep->block_fuel - ($prev_flight->block_fuel - $prev_flight->fuel_used);
+                $fuel_amount = $pirep->block_fuel->internal() - ($prev_flight->block_fuel->internal() - $prev_flight->fuel_used->internal());
                 // Aircraft has more than enough fuel in its tanks, no uplift necessary
                 if ($fuel_amount < 0) {
                     $fuel_amount = 0;
                 }
             } else {
                 // No pirep found for aircraft, debit full block fuel
-                $fuel_amount = $pirep->block_fuel;
+                $fuel_amount = $pirep->block_fuel->internal();
             }
         } else {
             // Setting is false, switch back to basic calculation
-            $fuel_amount = $pirep->fuel_used;
+            $fuel_amount = $pirep->fuel_used->internal();
         }
 
         $debit = Money::createFromAmount($fuel_amount * $fuel_cost);

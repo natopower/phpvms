@@ -90,7 +90,7 @@ and being mindful of the rivets bindings
       </thead>
       <tbody>
       <tr rv-each-pirep="pireps">
-        <td><a href="#top_anchor" rv-on-click="controller.focusMarker">{ pirep.airline.icao }{ pirep.ident}</a></td>
+        <td><a href="#top_anchor" rv-on-click="controller.focusMarker">{ pirep.ident }</a></td>
         {{-- Show the full airport name on hover --}}
         <td style="text-transform: none"><span rv-title="pirep.dpt_airport.name">{ pirep.dpt_airport.icao }</span></td>
         <td style="text-transform: none"><span rv-title="pirep.arr_airport.name">{ pirep.arr_airport.icao }</span></td>
@@ -114,7 +114,9 @@ and being mindful of the rivets bindings
       center: ['{{ $center[0] }}', '{{ $center[1] }}'],
       zoom: '{{ $zoom }}',
       aircraft_icon: '{!! public_asset('/assets/img/acars/aircraft.png') !!}',
+      refresh_interval: {{ setting('acars.update_interval', 60) }},
       units: '{{ setting('units.distance') }}',
+      flown_route_color: '#067ec1',
       leafletOptions: {
         scrollWheelZoom: false,
       }

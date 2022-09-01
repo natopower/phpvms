@@ -34,16 +34,16 @@ use Laracasts\Flash\Flash;
 
 class PirepController extends Controller
 {
-    private $aircraftRepo;
-    private $airlineRepo;
-    private $fareSvc;
-    private $flightRepo;
-    private $geoSvc;
-    private $pirepRepo;
-    private $airportRepo;
-    private $pirepFieldRepo;
-    private $pirepSvc;
-    private $userSvc;
+    private AircraftRepository $aircraftRepo;
+    private AirlineRepository $airlineRepo;
+    private FareService $fareSvc;
+    private FlightRepository $flightRepo;
+    private GeoService $geoSvc;
+    private PirepRepository $pirepRepo;
+    private AirportRepository $airportRepo;
+    private PirepFieldRepository $pirepFieldRepo;
+    private PirepService $pirepSvc;
+    private UserService $userSvc;
 
     /**
      * @param AircraftRepository   $aircraftRepo
@@ -91,8 +91,12 @@ class PirepController extends Controller
      */
     public function aircraftList($add_blank = false)
     {
+        $user = Auth::user();
+        $user_loc = filled($user->curr_airport_id) ? $user->curr_airport_id : $user->home_airport_id;
+        $location_check = setting('pireps.only_aircraft_at_dpt_airport', false);
+
         $aircraft = [];
-        $subfleets = $this->userSvc->getAllowableSubfleets(Auth::user());
+        $subfleets = $this->userSvc->getAllowableSubfleets($user);
 
         if ($add_blank) {
             $aircraft[''] = '';
@@ -100,7 +104,9 @@ class PirepController extends Controller
 
         foreach ($subfleets as $subfleet) {
             $tmp = [];
-            foreach ($subfleet->aircraft as $ac) {
+            foreach ($subfleet->aircraft->when($location_check, function ($query) use ($user_loc) {
+                return $query->where('airport_id', $user_loc);
+            }) as $ac) {
                 $tmp[$ac->id] = $ac['name'].' - '.$ac['registration'];
             }
 
@@ -182,7 +188,7 @@ class PirepController extends Controller
 
         $where = [['user_id', $user->id]];
         $where[] = ['state', '<>', PirepState::CANCELLED];
-        $with = ['airline', 'aircraft', 'dpt_airport', 'arr_airport', 'fares', 'comments'];
+        $with = ['aircraft', 'airline', 'arr_airport', 'comments', 'dpt_airport'];
 
         $this->pirepRepo->with($with)
             ->pushCriteria(new WhereCriteria($request, $where));
@@ -201,7 +207,20 @@ class PirepController extends Controller
      */
     public function show($id)
     {
-        $pirep = $this->pirepRepo->with(['simbrief'])->find($id);
+        $with = [
+            'acars_logs',
+            'aircraft.airline',
+            'airline.journal',
+            'arr_airport',
+            'comments',
+            'dpt_airport',
+            'fares.fare',
+            'transactions',
+            'simbrief',
+            'user.rank',
+        ];
+
+        $pirep = $this->pirepRepo->with($with)->find($id);
         if (empty($pirep)) {
             Flash::error('Pirep not found');
             return redirect(route('frontend.pirep.index'));
@@ -383,8 +402,8 @@ class PirepController extends Controller
         $pirep->flight_time = Time::hoursToMinutes($hours) + $minutes;
 
         // Set the correct fuel units
-        $pirep->block_fuel = new Fuel((float) $request->input('block_fuel'), setting('units.fuel'));
-        $pirep->fuel_used = new Fuel((float) $request->input('fuel_used'), setting('units.fuel'));
+        $pirep->block_fuel = Fuel::make((float) $request->input('block_fuel'), setting('units.fuel'));
+        $pirep->fuel_used = Fuel::make((float) $request->input('fuel_used'), setting('units.fuel'));
 
         // Put the time that this is currently submitted
         $attrs['submitted_at'] = Carbon::now('UTC');
