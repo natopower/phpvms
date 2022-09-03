@@ -161,6 +161,7 @@
               <input type="hidden" name="cruise" value="CI">
               <input type="hidden" name="civalue" value="AUTO">
               <input type="hidden" name="static_id" value="{{ $static_id }}">
+              <input type="hidden" name="dxname" value="{{ $dispatcher }}">
               {{-- For more info about form fields and their details check SimBrief Forum / API Support --}}
             </div>
             <div class="col-4">

@@ -222,8 +222,11 @@ class SimBriefController
 
         $request->session()->put('simbrief_fares', array_merge($pax_load_sheet, $cargo_load_sheet));
 
+        $dispatchers = ['POWER, NATE','BAGI, BRYAN','PATCHETT, JESSE','MANN, TRISTAN','COLLISON, ZACHARY','RAMIREZ, SIMON'];
+
         // Show the main simbrief form
         return view('flights.simbrief_form', [
+            'dispatcher'       => $dispatchers[array_rand($dispatchers)],
             'user'             => $user,
             'flight'           => $flight,
             'aircraft'         => $aircraft,
