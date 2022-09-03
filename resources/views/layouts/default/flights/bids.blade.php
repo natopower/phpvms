@@ -2,7 +2,7 @@
 @section('title', __('flights.mybid'))
 
 @section('content')
-  <a style="color: #272727" href="/flights"><i style="height: 12px" class="fas fa-arrow-left"></i> flights</a>
+  <a style="color: #272727; outline: none; !important box-shadow: none;" href="/flights"><i style="height: 12px" class="fas fa-arrow-left"></i> flights</a>
   <div class="row">
     @include('flash::message')
     <div class="col-md-12">

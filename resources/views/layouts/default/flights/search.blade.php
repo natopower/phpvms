@@ -8,13 +8,6 @@
       ]) }}
 
       <div class="mt-1">
-        <div class="form-group">
-          <p>@lang('common.airline')</p>
-          {{ Form::select('airline_id', $airlines, null , ['class' => 'form-control select2']) }}
-        </div>
-      </div>
-
-      <div class="mt-1">
         <p>@lang('flights.flighttype')</p>
         {{ Form::select('flight_type', $flight_types, null , ['class' => 'form-control select2']) }}
       </div>
@@ -22,11 +15,6 @@
       <div class="mt-1">
         <p>@lang('flights.flightnumber')</p>
         {{ Form::text('flight_number', null, ['class' => 'form-control']) }}
-      </div>
-
-      <div class="mt-1">
-        <p>@lang('flights.code')</p>
-        {{ Form::text('route_code', null, ['class' => 'form-control']) }}
       </div>
 
       <div class="mt-1">

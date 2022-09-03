@@ -22,12 +22,16 @@
                 If you change it, remember to change it in the in-array line as well
                 --}}
                 @if (!setting('pilots.only_flights_from_current') || $flight->dpt_airport_id == $user->current_airport->icao)
-                    <button class="btn btn-round btn-icon btn-icon-mini save_flight {{ isset($saved[$flight->id]) ? 'btn-info':'' }}"
+                    <button style="outline: none; !important box-shadow: none;" class="btn btn-round btn-icon btn-icon-mini save_flight {{ isset($saved[$flight->id]) ? 'btn-secondary':'' }}"
                             x-id="{{ $flight->id }}"
                             x-saved-class="btn-secondary"
                             type="button"
                             title="@lang('flights.addremovebid')">
+                @if (isset($saved[$flight->id]))
+                    <i class="fas fa-times"></i>       
+                @else
                     <i class="fas fa-check"></i>
+                @endif
                     </button>
                 @endif
             </td>

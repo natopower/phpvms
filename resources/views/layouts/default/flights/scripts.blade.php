@@ -21,6 +21,7 @@
           btn.removeClass(class_name);
           alert('@lang("flights.bidremoved")');
         }
+        window.location.reload();
       });
     });
   </script>
