@@ -3,15 +3,15 @@
 
 @section('content')
   <!--image header--> 
-  <div class="mask flex-column" style="width: 100%; background-image: url('https://cdn.discordapp.com/attachments/849693131833999432/880919870009659402/unknown.png')">
+  <div class="mask flex-column" style="width: 100%; background-image: url('https://cdn.discordapp.com/attachments/849693131833999432/1013565628533198888/unknown.png')">
     <div class="container" style="padding-bottom: 20em">
       <div style="padding-top: 10%">
         <br>
         <h1 style="font-size: 6em; color: #fff">
           <span class="badge-primary font-weight-bold" style="padding: 1%">welcome aboard, canada.</span>
         </h1>
-        <h6 style="font-size: 1.25em; color: #fff;">
-            <span class="winnipeg-blue corner" style="padding: 0.5%">Screenshot: Nate P | FLE010</span>
+        <h6 style="font-size: 1.25em; color: #272727">
+            <span class="winnipeg-blue corner" style="padding: 0.5%">Screenshot: Sandeep N. | FLE049</span>
         </h6>
         <br>
       </div>
