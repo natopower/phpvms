@@ -3,7 +3,7 @@
     <div class="col-sm-10">
       <p>
         <a style="text-transform: none;" href="{{ route('frontend.pireps.show', [$pirep->id]) }}">
-          {{ $pirep->airline->code }}{{ $pirep->ident }}</a>
+          {{ $pirep->ident }}</a>
         -
         {{ $pirep->dpt_airport->name }}
         (<a style="text-transform: none;" href="{{route('frontend.airports.show', [
