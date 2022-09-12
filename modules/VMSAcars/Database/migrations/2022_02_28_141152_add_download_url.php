@@ -2,12 +2,12 @@
 
 use Modules\VMSAcars\Contracts\Migration;
 
-class AddSplashBanner extends Migration
+class AddDownloadUrl extends Migration
 {
     public function up()
     {
-        // $this->seedFile('settings.yml');
-        // $this->seedFile('rules.yml');
+        $this->seedFile('settings.yml');
+        $this->seedFile('rules.yml');
     }
 
     public function down()

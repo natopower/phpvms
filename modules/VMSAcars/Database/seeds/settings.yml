@@ -11,9 +11,25 @@ vmsacars_config:
       options: ''
       type: 'string'
       description: 'The license key for vmsACARS. You can retrieve this from your host dashboard'
+    - id: 'download_url'
+      name: 'Link to the ACARS download'
+      order: 2
+      value: ''
+      default: ''
+      options: ''
+      type: 'string'
+      description: 'Upload the ACARS.zip and set the link here to make it available on the Downloads page'
+    - id: 'primary_theme_color'
+      name: 'Primary Theme Color'
+      order: 10
+      value: '#0078D7'
+      default: '#0078D7'
+      options: ''
+      type: 'string'
+      description: 'The primary accent color. Premium License only'
     - id: 'splash_screen_banner'
       name: 'Splash Screen Banner'
-      order: 2
+      order: 10
       value: ''
       default: ''
       options: ''
@@ -21,7 +37,7 @@ vmsacars_config:
       description: 'Replace the splash screen banner, PNG, sized to 500x375. Premium License only'
     - id: 'splash_screen_logo'
       name: 'Splash Screen Logo'
-      order: 3
+      order: 11
       value: ''
       default: ''
       options: ''
@@ -29,7 +45,7 @@ vmsacars_config:
       description: 'URL to your VA logo for the splash screen, PNG, sized to 150x150 max'
     - id: 'dashboard_logo'
       name: 'Dashboard Logo'
-      order: 4
+      order: 12
       value: ''
       default: ''
       options: ''
@@ -37,7 +53,7 @@ vmsacars_config:
       description: 'URL to your VA logo for the dashboard screen, PNG, sized to 300x64 max'
     - id: 'discord_application_id'
       name: 'Discord Application ID'
-      order: 5
+      order: 20
       value: ''
       default: ''
       options: ''
@@ -45,14 +61,21 @@ vmsacars_config:
       description: 'Your Discord Application ID for Rich Presence customization. Premium License only'
     - id: 'disable_free_flights'
       name: 'Disable free flights'
-      order: 6
+      order: 30
       value: ''
       default: 'false'
       type: 'bool'
       description: 'Require a flight from search or a bid to be selected'
+    - id: 'disable_tod_pause'
+      name: 'Disable pause at TOD'
+      order: 31
+      value: ''
+      default: 'false'
+      type: 'bool'
+      description: 'Disable the pause at TOD or distance feature'
     - id: 'bids_only'
       name: 'Only show bids'
-      order: 7
+      order: 35
       value: ''
       default: 'true'
       options: ''
@@ -60,21 +83,21 @@ vmsacars_config:
       description: 'Only show bids in the flight list'
     - id: 'use_real_time'
       name: 'Use the system time, not the in-sim time'
-      order: 8
+      order: 40
       value: 'false'
       default: 'false'
       type: 'bool'
       description: 'Use the system time instead of the in-sim time'
     - id: 'fares_required'
       name: 'Fare entry is required'
-      order: 9
+      order: 41
       value: 'true'
       default: 'true'
       type: 'bool'
       description: 'Entries for the fares are required to be entered'
     - id: 'acars_update_timer'
       name: 'ACARS update timer (in seconds)'
-      order: 10
+      order: 50
       value: '30'
       default: '30'
       options: '15, 30, 60, 90, 120, 240, 300, 360, 480'
@@ -82,7 +105,7 @@ vmsacars_config:
       description: 'How often the ACARS map updates flights'
     - id: 'position_report_ground'
       name: 'Ground position report interval (in seconds)'
-      order: 11
+      order: 51
       value: '15'
       default: '15'
       options: '15, 30, 60, 90, 120, 240, 300, 360, 480'
@@ -90,7 +113,7 @@ vmsacars_config:
       description: ''
     - id: 'position_report_under_transition'
       name: 'Position report interval (< 18k), in seconds'
-      order: 12
+      order: 52
       value: '90'
       default: '60'
       options: '15, 30, 60, 90, 120, 240, 300, 360, 480'
@@ -98,7 +121,7 @@ vmsacars_config:
       description: ''
     - id: 'position_report_above_transition'
       name: 'Position report interval (> 18k), in seconds'
-      order: 15
+      order: 53
       value: '300'
       default: '60'
       options: '15, 30, 60, 90, 120, 240, 300, 360, 480'
@@ -106,7 +129,7 @@ vmsacars_config:
       description: ''
     - id: 'flight_resume_last_point_distance'
       name: 'Flight resumes within last distance'
-      order: 18
+      order: 54
       value: 15
       default: 15
       options:
@@ -114,9 +137,8 @@ vmsacars_config:
       description: 'Pilot must be within N nmi of the last position report to resume'
     - id: 'check_engine_for_arrived'
       name: 'Engine(s) must be stopped for arrival state'
-      order: 25
+      order: 55
       value: 'false'
       default: 'false'
       type: 'bool'
       description: 'Engines must be stopped for arrival state'
-      

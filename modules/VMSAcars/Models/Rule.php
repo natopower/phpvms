@@ -24,6 +24,8 @@ class Rule extends Model
 
     public $fillable = [
         'parameter',
+        'order',
+        'points',
         'repeatable',
         'cooldown',
         'delay',
@@ -33,6 +35,8 @@ class Rule extends Model
     protected $casts = [
 	    'parameter'     => 'integer',
         'repeatable'    => 'bool',
+        'order'         => 'integer',
+        'points'        => 'integer',
         'delay'         => 'integer',
         'cooldown'      => 'integer',
         'enabled'       => 'bool',
