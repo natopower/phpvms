@@ -63,7 +63,8 @@
         If you want to remove the attribution, a license can be purchased
         https://docs.phpvms.net/#license
         --}}
-        powered by <a href="http://www.phpvms.net" target="_blank">phpvms</a>
+        powered by <a href="http://www.phpvms.net" target="_blank">phpvms.</a>
+        <a href="https://vatsim.net"><img style="height: 50px" src="https://winnipegfir.ca/storage/files/uploads/1666900451.png"></a>
       </div>
     </div>
   </footer>
