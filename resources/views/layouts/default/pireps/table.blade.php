@@ -18,7 +18,7 @@
       <tr>
         <td>
           <a style="text-transform: none" href="{{ route('frontend.pireps.show', [
-                      $pirep->id]) }}">{{ $pirep->airline->code }}{{ $pirep->ident }}</a>
+                      $pirep->id]) }}">{{ $pirep->ident }}</a>
         </td>
         <td>
           @if($pirep->dpt_airport){{ $pirep->dpt_airport->name }}@endif
