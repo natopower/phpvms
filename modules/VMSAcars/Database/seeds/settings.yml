@@ -66,9 +66,16 @@ vmsacars_config:
       default: 'false'
       type: 'bool'
       description: 'Require a flight from search or a bid to be selected'
+    - id: 'free_flights_airline_aircraft_only'
+      name: 'Free Flights Aircraft'
+      order: 31
+      value: ''
+      default: 'false'
+      type: 'bool'
+      description: 'Free flights can only use aircraft from their respective airlines'
     - id: 'disable_tod_pause'
       name: 'Disable pause at TOD'
-      order: 31
+      order: 32
       value: ''
       default: 'false'
       type: 'bool'

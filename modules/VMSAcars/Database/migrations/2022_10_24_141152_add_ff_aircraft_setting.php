@@ -2,12 +2,12 @@
 
 use Modules\VMSAcars\Contracts\Migration;
 
-class AddTodSetting extends Migration
+class AddFfAircraftSetting extends Migration
 {
     public function up()
     {
-        //$this->seedFile('settings.yml');
-        //$this->seedFile('rules.yml');
+        $this->seedFile('settings.yml');
+        $this->seedFile('rules.yml');
     }
 
     public function down()
