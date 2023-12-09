@@ -64,7 +64,6 @@
         https://docs.phpvms.net/#license
         --}}
         powered by <a href="http://www.phpvms.net" target="_blank">phpvms.</a>
-        <a href="https://vatsim.net"><img class="pl-3" style="height: 50px" src="https://winnipegfir.ca/storage/files/uploads/1666900451.png"></a>
       </div>
     </div>
   </footer>
