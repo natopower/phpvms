@@ -11,8 +11,6 @@ class AddOrderColumn extends Migration
         Schema::table('vmsacars_rules', function (Blueprint $table) {
             $table->unsignedSmallInteger('order')->after('cooldown')->default(0);
         });
-
-        //$this->seedFile('rules.yml');
     }
 
     public function down()

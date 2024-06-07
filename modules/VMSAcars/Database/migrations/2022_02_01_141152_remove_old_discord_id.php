@@ -9,9 +9,6 @@ class RemoveOldDiscordId extends Migration
         DB::table('vmsacars_config')
             ->where(['id' => 'discord_client_id'])
             ->delete();
-
-        //$this->seedFile('settings.yml');
-        //$this->seedFile('rules.yml');
     }
 
     public function down()

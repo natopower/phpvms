@@ -19,9 +19,17 @@ vmsacars_config:
       options: ''
       type: 'string'
       description: 'Upload the ACARS.zip and set the link here to make it available on the Downloads page'
+    - id: 'custom_config_url'
+      name: 'Custom Config URL'
+      order: 2
+      value: ''
+      default: ''
+      options: ''
+      type: 'string'
+      description: 'URL to a zip file which has your custom configurations'
     - id: 'primary_theme_color'
       name: 'Primary Theme Color'
-      order: 10
+      order: 4
       value: '#0078D7'
       default: '#0078D7'
       options: ''
@@ -45,12 +53,20 @@ vmsacars_config:
       description: 'URL to your VA logo for the splash screen, PNG, sized to 150x150 max'
     - id: 'dashboard_logo'
       name: 'Dashboard Logo'
-      order: 12
+      order: 13
       value: ''
       default: ''
       options: ''
       type: 'string'
       description: 'URL to your VA logo for the dashboard screen, PNG, sized to 300x64 max'
+    - id: 'dashboard_logo_dark'
+      name: 'Dashboard Logo (Dark Mode)'
+      order: 14
+      value: ''
+      default: ''
+      options: ''
+      type: 'string'
+      description: 'URL to your VA dark mode logo for the dashboard screen, PNG, sized to 300x64 max'
     - id: 'discord_application_id'
       name: 'Discord Application ID'
       order: 20
